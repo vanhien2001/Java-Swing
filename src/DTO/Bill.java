@@ -11,16 +11,25 @@ package DTO;
  */
 public class Bill {
     int id;
-    Customer customer;
+    Booking booking;
+    Use_service use_service;
     Staff staff;
     int price;
 
     public Bill() {
     }
 
-    public Bill(int id, Customer customer, Staff staff, int price) {
+    public Bill(int id, Booking booking, Use_service use_service, Staff staff, int price) {
         this.id = id;
-        this.customer = customer;
+        this.booking = booking;
+        this.use_service = use_service;
+        this.staff = staff;
+        this.price = price;
+    }
+
+    public Bill(Booking booking, Use_service use_service, Staff staff, int price) {
+        this.booking = booking;
+        this.use_service = use_service;
         this.staff = staff;
         this.price = price;
     }
@@ -33,12 +42,20 @@ public class Bill {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Use_service getUse_service() {
+        return use_service;
+    }
+
+    public void setUse_service(Use_service use_service) {
+        this.use_service = use_service;
     }
 
     public Staff getStaff() {
@@ -56,6 +73,8 @@ public class Bill {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    
     
     
 }

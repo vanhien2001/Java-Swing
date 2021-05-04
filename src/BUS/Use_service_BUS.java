@@ -71,6 +71,49 @@ public class Use_service_BUS {
         return list_staff;
     }
     
+    public Use_service SelectbyIdCustomer(int id){
+        Use_service c = new Use_service();
+        String sql = "SELECT *,b.id id_booking FROM `use_service` us INNER JOIN booking b ON us.id_customer=b.id_customer where us.id_customer = ? GROUP BY us.id_customer; ";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();              
+                c.setId(rs.getInt("id"));
+                c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
+                c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
+                ArrayList<Integer> days = new ArrayList<>();
+                ArrayList<Service> list_service = new ArrayList<>();
+                String sql1 = "SELECT * FROM `use_service` us INNER JOIN service s on us.id_service = s.id WHERE us.id_customer=?;";
+                try {
+                    PreparedStatement ps1 = conn.prepareStatement(sql1);
+                    ps1.setInt(1, id);
+                    ResultSet rs1 = ps1.executeQuery();
+                    while(rs1.next()){
+                        days.add(rs1.getInt("Days"));
+                        Service f = new Service();
+                        f.setId(rs1.getInt("id_service"));
+                        System.out.println(id);
+                        f.setName(rs1.getString("Name"));
+                        System.out.println("2");
+                        f.setDescription(rs1.getString("Description"));
+                        f.setPrice(rs1.getInt("Price"));
+                        list_service.add(f);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                c.setDays(days);
+                c.setList_service(list_service);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return c;
+    }
+    
+    
     public Use_service SelectbyId(int id){
         Use_service c = new Use_service();
         String sql = "SELECT * FROM use_service where id = ?";

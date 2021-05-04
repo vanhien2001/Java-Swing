@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class Bill_BUS {
     Connection conn = new Database().conn;
     DefaultTableModel model;
-    Customer_BUS customer = new Customer_BUS();
+    Booking_BUS booking_BUS = new Booking_BUS();
     Staff_BUS staff = new Staff_BUS();
     
     
@@ -36,7 +36,7 @@ public class Bill_BUS {
             while(rs.next()){
                 Bill c = new Bill();
                 c.setId(rs.getInt("id"));
-                c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
+                c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
                 c.setPrice(rs.getInt("Price"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
                 list_staff.add(c);
@@ -56,9 +56,8 @@ public class Bill_BUS {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            c.setId(rs.getInt("id"));
                 c.setId(rs.getInt("id"));
-                c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
+                c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
                 c.setPrice(rs.getInt("Price"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
         } catch (Exception e) {
@@ -74,7 +73,7 @@ public class Bill_BUS {
                 + "VALUES(?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, s.getCustomer().getId());
+            ps.setInt(1, s.getBooking().getId());
             ps.setInt(2, s.getPrice());
             ps.setInt(3, s.getStaff().getId());
             
@@ -87,12 +86,12 @@ public class Bill_BUS {
         return false;
     }
     
-    public boolean editBill(Bill s,Customer customer,int price,Staff staff){
+    public boolean editBill(Bill s,Booking booking,int price,Staff staff){
         
         String sql = "UPDATE `bill` SET `id_customer`=?,`Price`=?,`id_staff`=? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,customer.getId() );
+            ps.setInt(1,booking.getId() );
             ps.setInt(2, price);
             ps.setInt(3, staff.getId());
             ps.setInt(4, s.getId());

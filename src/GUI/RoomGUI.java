@@ -192,7 +192,7 @@ public class RoomGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn phòng ");        
         }else{
             Room s = list.get(index);
-            new EditBooking().infor(null,s,staff,new BookingGUI(),this);  
+            new EditBooking().infor(null,s,staff,new BookingGUI(staff),this);  
         }
         showRoom();
     }//GEN-LAST:event_btnBookingActionPerformed

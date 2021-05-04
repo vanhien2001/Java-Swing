@@ -82,7 +82,6 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel19 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
         totalNav = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -264,7 +263,7 @@ public class MainGUI extends javax.swing.JFrame {
         HotelBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         HotelBtn.setForeground(new java.awt.Color(255, 255, 255));
         HotelBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        HotelBtn.setText("Hotel");
+        HotelBtn.setText("Bill");
         HotelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HotelBtnMouseClicked(evt);
@@ -588,13 +587,18 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(145, 156, 175));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Hotel");
+        jLabel12.setText("Thông tin các hoá đơn");
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,21 +607,15 @@ public class MainGUI extends javax.swing.JFrame {
 
         jPanel20.setBackground(new java.awt.Color(30, 38, 50));
 
-        jLabel16.setBackground(new java.awt.Color(145, 156, 175));
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(145, 156, 175));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Hotel");
-
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+            .addGap(0, 36, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout HotelNavLayout = new javax.swing.GroupLayout(HotelNav);
@@ -886,7 +884,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void RoomLink2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RoomLink2MouseClicked
         // TODO add your handling code here:
-        switchPanel(jPanel2, new BookingGUI());
+        switchPanel(jPanel2, new BookingGUI(staff));
         setColorNavChoose(roomBookInfo);
     }//GEN-LAST:event_RoomLink2MouseClicked
 
@@ -901,6 +899,11 @@ public class MainGUI extends javax.swing.JFrame {
         switchPanel(jPanel2, new ServiceGUI(staff));
         setColorNavChoose(serviceInfo);
     }//GEN-LAST:event_serviceInforLinkMouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        // TODO add your handling code here:
+        switchPanel(jPanel2, new BillGUI());
+    }//GEN-LAST:event_jLabel12MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
@@ -965,7 +968,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel hotelBtn;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author vanhi
  */
 public class EditBooking extends javax.swing.JFrame {
-    BookingGUI bgui = new BookingGUI();
+    BookingGUI bgui = null;
     Booking_BUS booking_BUS = new Booking_BUS();
     Booking booking = null;
     Room room = null;

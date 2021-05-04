@@ -6,7 +6,11 @@
 package GUI;
 
 import BUS.Booking_BUS;
+import BUS.Use_service_BUS;
+import DTO.Bill;
 import DTO.Booking;
+import DTO.Staff;
+import DTO.Use_service;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,12 +22,14 @@ import javax.swing.table.DefaultTableModel;
 public class BookingGUI extends javax.swing.JPanel {
     Booking_BUS booking_BUS = new Booking_BUS();
     DefaultTableModel model;
+    Staff staff = null;
     int index;
     /**
      * Creates new form StaffGUI
      */
-    public BookingGUI() {
+    public BookingGUI(Staff s) {
         initComponents();
+        staff = s;
         showBooking();
     }
     
@@ -58,6 +64,7 @@ public class BookingGUI extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnCheckout = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -125,6 +132,18 @@ public class BookingGUI extends javax.swing.JPanel {
             }
         });
 
+        btnCheckout.setBackground(new java.awt.Color(52, 152, 219));
+        btnCheckout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCheckout.setForeground(new java.awt.Color(255, 255, 255));
+        btnCheckout.setText("Check out");
+        btnCheckout.setBorder(null);
+        btnCheckout.setBorderPainted(false);
+        btnCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,7 +155,9 @@ public class BookingGUI extends javax.swing.JPanel {
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(505, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +166,8 @@ public class BookingGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
@@ -393,10 +415,36 @@ public class BookingGUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Booking> list = booking_BUS.SelectAll();
+        index = tb_staff.getSelectedRow();
+        if(list.size()==0){
+            JOptionPane.showMessageDialog(this, "Không có thông tin để thanh toán");
+        }else if(index == -1){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để thanh toán");        
+        }else{
+            int choose = JOptionPane.showConfirmDialog(this, "Xác nhận thanh toán");
+            if(choose==0){
+                Booking b = list.get(index);
+                Use_service us = new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId());
+                int price = b.getRoom().getPrice()*b.getDays();
+                    for (int j = 0; j < us.getList_service().size(); j++) {
+                        price += us.getList_service().get(j).getPrice()*us.getDays().get(j);
+                    }
+                new Bill( b ,new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId()),staff,price);
+                JOptionPane.showMessageDialog(null, "Trả phòng thành công");
+                booking_BUS.deleteBooking(b);
+                showBooking();
+            }
+        }
+    }//GEN-LAST:event_btnCheckoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAddService;
+    private javax.swing.JButton btnCheckout;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnEdit;
