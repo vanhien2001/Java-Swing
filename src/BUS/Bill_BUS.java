@@ -39,6 +39,7 @@ public class Bill_BUS {
                 c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
                 c.setPrice(rs.getInt("Price"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
+                c.setTimestamp(rs.getTimestamp("Date"));
                 list_staff.add(c);
             }
         } catch (Exception e) {
@@ -60,6 +61,7 @@ public class Bill_BUS {
                 c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
                 c.setPrice(rs.getInt("Price"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
+                c.setTimestamp(rs.getTimestamp("Date"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +71,7 @@ public class Bill_BUS {
     
     public boolean addBill(Bill s){
         
-        String sql = "INSERT INTO `bill`(`id_customer`,`Price`,`id_staff`)"
+        String sql = "INSERT INTO `bill`(`id_booking`,`Price`,`id_staff`)"
                 + "VALUES(?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -88,7 +90,7 @@ public class Bill_BUS {
     
     public boolean editBill(Bill s,Booking booking,int price,Staff staff){
         
-        String sql = "UPDATE `bill` SET `id_customer`=?,`Price`=?,`id_staff`=? WHERE id = ?";
+        String sql = "UPDATE `bill` SET `id_booking`=?,`Price`=?,`id_staff`=? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1,booking.getId() );

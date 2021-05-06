@@ -41,7 +41,7 @@ public class Use_service_BUS {
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
                 int id = rs.getInt("id_customer");
-                ArrayList<Integer> days = new ArrayList<>();
+                ArrayList<Timestamp> days = new ArrayList<>();
                 ArrayList<Service> list_service = new ArrayList<>();
                 String sql1 = "SELECT * FROM `use_service` us INNER JOIN service s on us.id_service = s.id WHERE us.id_customer=?;";
                 try {
@@ -49,7 +49,7 @@ public class Use_service_BUS {
                     ps.setInt(1, id);
                     ResultSet rs1 = ps.executeQuery();
                     while(rs1.next()){
-                        days.add(rs1.getInt("Days"));
+                        days.add(rs1.getTimestamp("Date"));
                         Service f = new Service();
                         f.setId(rs1.getInt("id_service"));
                         f.setName(rs1.getString("Name"));
@@ -60,7 +60,7 @@ public class Use_service_BUS {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                c.setDays(days);
+                c.setDate(days);
                 c.setList_service(list_service);
                 list_staff.add(c);
             }
@@ -82,7 +82,7 @@ public class Use_service_BUS {
                 c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
-                ArrayList<Integer> days = new ArrayList<>();
+                ArrayList<Timestamp> days = new ArrayList<>();
                 ArrayList<Service> list_service = new ArrayList<>();
                 String sql1 = "SELECT * FROM `use_service` us INNER JOIN service s on us.id_service = s.id WHERE us.id_customer=?;";
                 try {
@@ -90,7 +90,7 @@ public class Use_service_BUS {
                     ps1.setInt(1, id);
                     ResultSet rs1 = ps1.executeQuery();
                     while(rs1.next()){
-                        days.add(rs1.getInt("Days"));
+                        days.add(rs1.getTimestamp("Date"));
                         Service f = new Service();
                         f.setId(rs1.getInt("id_service"));
                         System.out.println(id);
@@ -103,7 +103,7 @@ public class Use_service_BUS {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                c.setDays(days);
+                c.setDate(days);
                 c.setList_service(list_service);
             
         } catch (Exception e) {
@@ -125,13 +125,13 @@ public class Use_service_BUS {
             c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 ArrayList<Service> list_service = new ArrayList<>();
-                ArrayList<Integer> days = new ArrayList<>();
+                ArrayList<Timestamp> days = new ArrayList<>();
                 String sql1 = "SELECT * FROM `use_service` us INNER JOIN service s on us.id_service = s.id WHERE us.id_customer=?;";
                 try {
                     PreparedStatement ps1 = conn.prepareStatement(sql1);
                     ResultSet rs1 = ps1.executeQuery();
                     while(rs1.next()){
-                        days.add(rs1.getInt("Days"));
+                        days.add(rs1.getTimestamp("Date"));
                         Service f = new Service();
                         f.setId(rs1.getInt("id_service"));
                         f.setName(rs1.getString("Name"));
@@ -142,7 +142,7 @@ public class Use_service_BUS {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                c.setDays(days);
+                c.setDate(days);
                 c.setList_service(list_service);
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,13 +155,12 @@ public class Use_service_BUS {
     
     public boolean addUse_service(Use_service s){
         for (int i = 0; i < s.getList_service().size(); i++) {
-            String sql = "INSERT INTO `use_service`(`id_customer`,`id_service`,`Days`)"
-                + "VALUES(?,?,?)";
+            String sql = "INSERT INTO `use_service`(`id_customer`,`id_service`)"
+                + "VALUES(?,?)";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setInt(1, s.getCustomer().getId());
                 ps.setInt(2, s.getList_service().get(i).getId());
-                ps.setInt(3, s.getDays().get(i));
             
                 return ps.executeUpdate() > 0;
                 
@@ -175,12 +174,11 @@ public class Use_service_BUS {
     
     public boolean editUse_service(Use_service s,Customer customer,Service service,int days){
         
-        String sql = "UPDATE `use_service` SET `id_customer`=?,`id_service`=?,`Days`=? WHERE id = ?";
+        String sql = "UPDATE `use_service` SET `id_customer`=?,`id_service`=? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1,customer.getId() );
             ps.setInt(1,service.getId() );
-            ps.setInt(2, days);
             ps.setInt(4, s.getId());
             return ps.executeUpdate() > 0;
             

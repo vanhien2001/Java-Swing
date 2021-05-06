@@ -39,7 +39,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
         for (Use_service s : list) {
             String services = "";
             for (int j = 0; j < s.getList_service().size(); j++) {
-                services += s.getList_service().get(j).getName()+" ("+s.getDays().get(j)+") , ";
+                services += s.getList_service().get(j).getName()+" ("+s.getDate().get(j).toString()+"),  ";
             }
             model.addRow(new Object[]{
                 i++, s.getCustomer().getName(), s.getBooking().getRoom().getName(), services

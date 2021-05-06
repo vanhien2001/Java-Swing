@@ -39,8 +39,9 @@ public class Booking_BUS {
                 c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(room.SelectbyId(rs.getInt("id_room")));
-                c.setDays(rs.getInt("Days"));
+                c.setTimestamp(rs.getTimestamp("Date"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
+                c.setPayed(rs.getBoolean("Payed"));
                 list_staff.add(c);
             }
         } catch (Exception e) {
@@ -61,8 +62,9 @@ public class Booking_BUS {
             c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(room.SelectbyId(rs.getInt("id_room")));
-                c.setDays(rs.getInt("Days"));
+                c.setTimestamp(rs.getTimestamp("Date"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
+                c.setPayed(rs.getBoolean("Payed"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,8 +89,9 @@ public class Booking_BUS {
                 c.setId(rs.getInt("id"));
                 c.setCustomer(new Customer_BUS().SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(new Room_BUS().SelectbyId(rs.getInt("id_room")));
-                c.setDays(rs.getInt("Days"));
+                c.setTimestamp(rs.getTimestamp("Date"));
                 c.setStaff(new Staff_BUS().SelectbyId(rs.getInt("id_staff")));
+                c.setPayed(rs.getBoolean("Payed"));
                 list_staff.add(c);
             }
         } catch (Exception e) {
@@ -100,14 +103,14 @@ public class Booking_BUS {
     
     public boolean addBooking(Booking s){
         int id = new Customer_BUS().addCustomer(s.getCustomer());
-        String sql = "INSERT INTO `booking`(`id_customer`, `id_room`,`Days`,`id_staff`)"
+        String sql = "INSERT INTO `booking`(`id_customer`, `id_room`,`id_staff`,`Payed`)"
                 + "VALUES(?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.setInt(2, s.getRoom().getId());
-            ps.setInt(3, s.getDays());
-            ps.setInt(4, s.getStaff().getId());
+            ps.setInt(3, s.getStaff().getId());
+            ps.setBoolean(4, s.getPayed());
             
             return ps.executeUpdate() > 0;
             
@@ -118,13 +121,13 @@ public class Booking_BUS {
         return false;
     }
     
-    public boolean editBooking(Booking s,Customer customer,int days){
+    public boolean editBooking(Booking s,Customer customer , Boolean payed){
         new Customer_BUS().editCustomer(s.getCustomer(), customer.getName(), customer.getSdt(), customer.getCmnd(), customer.getAddress());
-        String sql = "UPDATE `booking` SET `Days`=? WHERE id = ?";
+        String sql = "UPDATE `booking` SET `Payed`=? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,days);
-            ps.setInt(2,s.getId());
+            ps.setBoolean(1,payed);
+            ps.setInt(2, s.getId());
             return ps.executeUpdate() > 0;
             
         } catch (Exception e) {

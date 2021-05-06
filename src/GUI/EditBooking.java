@@ -47,12 +47,14 @@ public class EditBooking extends javax.swing.JFrame {
             txtSdt.setText(b.getCustomer().getSdt());
             txtCmnd.setText(b.getCustomer().getCmnd());
             txtAddress.setText(b.getCustomer().getAddress());
-            txtDays.setText(String.valueOf(b.getDays()));
+            txtDays.setText(b.getTimestamp().toString());
+            txtDays.setEditable(false);
             
         }else{
             title.setText("Đặt phòng");
             txtIdroom.setText(r.getName());
             txtIdroom.setEditable(false);
+            txtDays.setVisible(false);
         }
         this.setVisible(true);
     }
@@ -183,20 +185,18 @@ public class EditBooking extends javax.swing.JFrame {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
         if(booking!=null){
-            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),Integer.parseInt(txtDays.getText()));
+            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
             bgui.showBooking();
         }else{
             room.setBooked(true);
+            Booking s = new Booking(new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),room,staff,false);
             new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
-            Booking s = new Booking(new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),room,staff,Integer.parseInt(txtDays.getText()));
             booking_BUS.addBooking(s);
             JOptionPane.showMessageDialog(rootPane, "Đặt phòng thành công");
             rgui.showRoom();
         }
         this.setVisible(false);
-        System.out.println("1");
-        System.out.println("2");
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

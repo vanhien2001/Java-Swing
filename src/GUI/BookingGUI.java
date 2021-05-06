@@ -5,12 +5,16 @@
  */
 package GUI;
 
+import BUS.Bill_BUS;
 import BUS.Booking_BUS;
+import BUS.Room_BUS;
 import BUS.Use_service_BUS;
 import DTO.Bill;
 import DTO.Booking;
+import DTO.Room;
 import DTO.Staff;
 import DTO.Use_service;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,15 +39,17 @@ public class BookingGUI extends javax.swing.JPanel {
     
     public void showBooking() {
         ArrayList<Booking> list = booking_BUS.SelectAll();
+        System.out.println(list.get(1).getPayed()?"Đã thanh toán":" ");
+        System.out.println("ok");
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
-            "STT", "Họ tên khách hàng", "Sđt", "Cmnd", "Địa chỉ", "Phòng đặt","Thời gian thuê","Nhân viên đặt phòng"
+            "STT", "Họ tên", "Sđt", "Cmnd", "Địa chỉ", "Phòng","Thời điểm đặt phòng","Nhân viên đặt phòng"," "
         });
         model.setRowCount(0);
         for (Booking s : list) {
             model.addRow(new Object[]{
-                i++, s.getCustomer().getName(), s.getCustomer().getSdt(), s.getCustomer().getCmnd(), s.getCustomer().getAddress(), s.getRoom().getName(),s.getDays(),s.getStaff().getName()
+                i++, s.getCustomer().getName(), s.getCustomer().getSdt(), s.getCustomer().getCmnd(), s.getCustomer().getAddress(), s.getRoom().getName(),s.getTimestamp().toString(),s.getStaff().getName(),s.getPayed()?"Đã thanh toán":" "
             });
         }
     }
@@ -356,8 +362,11 @@ public class BookingGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để sửa");        
         }else{
             Booking s = list.get(index);
-            new EditBooking().infor(s,s.getRoom(),s.getStaff(),this, null);
-            
+            if(s.getPayed()){
+                    JOptionPane.showMessageDialog(this, "Lỗi! Khách đã trả phòng");
+            }else{
+                new EditBooking().infor(s,s.getRoom(),s.getStaff(),this, null);              
+            }          
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -371,7 +380,11 @@ public class BookingGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng ");        
         }else{
             Booking s = list.get(index);
-            new Add_use_service().infor(s, new Use_serviceGUI());  
+            if(s.getPayed()){
+                    JOptionPane.showMessageDialog(this, "Lỗi! Khách đã trả phòng");
+            }else{
+                new Add_use_service().infor(s, new Use_serviceGUI());              
+            }
         }
         
     }//GEN-LAST:event_btnAddActionPerformed
@@ -394,7 +407,11 @@ public class BookingGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng ");        
         }else{
             Booking s = list.get(index);
-            new Add_use_service().infor(s, new Use_serviceGUI());  
+            if(s.getPayed()){
+                    JOptionPane.showMessageDialog(this, "Lỗi! Khách đã trả phòng");
+            }else{
+                new Add_use_service().infor(s, new Use_serviceGUI());              
+            }
         }
         
     }//GEN-LAST:event_btnAddServiceActionPerformed
@@ -405,12 +422,12 @@ public class BookingGUI extends javax.swing.JPanel {
         ArrayList<Booking> list = booking_BUS.SelectbyKeyword(keyword);;
         int i =1;
         model.setColumnIdentifiers(new Object[]{
-            "STT", "Họ tên", "Sđt", "Cmnd", "Địa chỉ", "Phòng","Thời gian","Nhân viên đặt phòng"
+            "STT", "Họ tên", "Sđt", "Cmnd", "Địa chỉ", "Phòng","Thời điểm đặt phòng","Nhân viên đặt phòng",""
         });
         model.setRowCount(0);
         for (Booking s : list) {
             model.addRow(new Object[]{
-                i++, s.getCustomer().getName(), s.getCustomer().getSdt(), s.getCustomer().getCmnd(), s.getCustomer().getAddress(), s.getRoom().getName(),s.getDays(),s.getStaff().getName()
+                i++, s.getCustomer().getName(), s.getCustomer().getSdt(), s.getCustomer().getCmnd(), s.getCustomer().getAddress(), s.getRoom().getName(),s.getTimestamp().toString(),s.getStaff().getName(),s.getPayed()?"Đã thanh toán":""
             });
         }
     }//GEN-LAST:event_txtSearchKeyReleased
@@ -419,23 +436,31 @@ public class BookingGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<Booking> list = booking_BUS.SelectAll();
         index = tb_staff.getSelectedRow();
+        Booking b = list.get(index);
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để thanh toán");
         }else if(index == -1){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để thanh toán");        
         }else{
-            int choose = JOptionPane.showConfirmDialog(this, "Xác nhận thanh toán");
-            if(choose==0){
-                Booking b = list.get(index);
-                Use_service us = new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId());
-                int price = b.getRoom().getPrice()*b.getDays();
-                    for (int j = 0; j < us.getList_service().size(); j++) {
-                        price += us.getList_service().get(j).getPrice()*us.getDays().get(j);
-                    }
-                new Bill( b ,new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId()),staff,price);
-                JOptionPane.showMessageDialog(null, "Trả phòng thành công");
-                booking_BUS.deleteBooking(b);
-                showBooking();
+            if(b.getPayed()){
+                    JOptionPane.showMessageDialog(this, "Lỗi! Khách đã trả phòng");
+            }else{
+                    int choose = JOptionPane.showConfirmDialog(this, "Xác nhận thanh toán");
+                    if(choose==0){
+                    int date = new Timestamp(System.currentTimeMillis()).getDate();
+                    Use_service us = new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId());
+                    int price = b.getRoom().getPrice()*(date - b.getTimestamp().getDate()+1);
+                        for (int j = 0; j < us.getList_service().size(); j++) {
+                            price += us.getList_service().get(j).getPrice();
+                        }
+                    new Bill_BUS().addBill(new Bill( b ,new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId()),staff,price));
+                    booking_BUS.editBooking(b, b.getCustomer(),true);
+                    Room r = b.getRoom();
+                    new Room_BUS().editRoom(r, r.getName(), r.getBed(), r.getPrice(), true, false);
+                    showBooking();
+                    JOptionPane.showMessageDialog(null, "Trả phòng thành công");
+            }
+
             }
         }
     }//GEN-LAST:event_btnCheckoutActionPerformed

@@ -37,17 +37,17 @@ public class BillGUI extends javax.swing.JPanel {
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
-            "STT", "Họ tên khách hàng","Sđt","Cmnd", "Phòng thuê","Số ngày thuê","Dịch vụ khách sử dụng (Số ngày sử dụng)","Tổng tiền","Nhân viên đặt phòng","Nhân viên thanh toán"
+            "STT", "Họ tên khách hàng","Sđt","Cmnd", "Phòng thuê","Ngày thuê","Ngày trả phòng","Dịch vụ khách sử dụng (Ngày sử dụng)","Tổng tiền","Nhân viên đặt phòng","Nhân viên thanh toán"
         });
         model.setRowCount(0);
         for (Bill s : list) {
             Use_service use_service = new Use_service_BUS().SelectbyIdCustomer(s.getBooking().getCustomer().getId());
             String services = "";
             for (int j = 0; j < use_service.getList_service().size(); j++) {
-                services += use_service.getList_service().get(j).getName()+" ("+use_service.getDays().get(j)+") , ";
+                services += use_service.getList_service().get(j).getName()+" ("+use_service.getDate().get(j).toString()+") , ";
             }
             model.addRow(new Object[]{
-                i++, s.getBooking().getCustomer().getName(), s.getBooking().getCustomer().getSdt(),s.getBooking().getCustomer().getCmnd(),s.getBooking().getRoom().getName(),s.getBooking().getDays(),services,s.getPrice(),s.getBooking().getStaff().getName(),s.getStaff().getName()
+                i++, s.getBooking().getCustomer().getName(), s.getBooking().getCustomer().getSdt(),s.getBooking().getCustomer().getCmnd(),s.getBooking().getRoom().getName(),s.getBooking().getTimestamp(),s.getTimestamp().toString(),services,s.getPrice(),s.getBooking().getStaff().getName(),s.getStaff().getName()
             });
         }
     }

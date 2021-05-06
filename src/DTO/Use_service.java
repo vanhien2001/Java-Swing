@@ -5,6 +5,7 @@
  */
 package DTO;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -16,24 +17,24 @@ public class Use_service {
     Customer customer;
     Booking booking;
     ArrayList<Service> list_service;
-    ArrayList<Integer> days;
+    ArrayList<Timestamp> date;
 
     public Use_service() {
     }
 
-    public Use_service(int id, Customer customer, Booking booking, ArrayList<Service> list_service, ArrayList<Integer> days) {
+    public Use_service(int id, Customer customer, Booking booking, ArrayList<Service> list_service, ArrayList<Timestamp> days) {
         this.id = id;
         this.customer = customer;
         this.booking = booking;
         this.list_service = list_service;
-        this.days = days;
+        this.date = days;
     }
 
-    public Use_service(Customer customer, Booking booking, ArrayList<Service> list_service, ArrayList<Integer> days) {
+    public Use_service(Customer customer, Booking booking, ArrayList<Service> list_service, ArrayList<Timestamp> days) {
         this.customer = customer;
         this.booking = booking;
         this.list_service = list_service;
-        this.days = days;
+        this.date = days;
     }
 
     public Booking getBooking() {
@@ -69,16 +70,13 @@ public class Use_service {
         this.list_service = list_service;
     }
 
-    public ArrayList<Integer> getDays() {
-        return days;
+    public ArrayList<Timestamp> getDate() {
+        return date;
     }
 
-    public void setDays(ArrayList<Integer> days) {
-        this.days = days;
+    public void setDate(ArrayList<Timestamp> date) {
+        this.date = date;
     }
 
-    
 
-    
-    
 }

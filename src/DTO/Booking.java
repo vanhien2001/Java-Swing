@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package DTO;
+import java.util.Date;
+import  java.sql.Timestamp;
 
 /**
  *
@@ -14,24 +16,25 @@ public class Booking {
     Customer customer;
     Room room;
     Staff staff;
-    int days;
+    Timestamp timestamp;
+    Boolean payed;
+
+    public Booking(Customer customer, Room room, Staff staff, Timestamp timestamp, Boolean payed) {
+        this.customer = customer;
+        this.room = room;
+        this.staff = staff;
+        this.timestamp = timestamp;
+        this.payed = payed;
+    }
+
+    public Booking(Customer customer, Room room, Staff staff, Boolean payed) {
+        this.customer = customer;
+        this.room = room;
+        this.staff = staff;
+        this.payed = payed;
+    }
 
     public Booking() {
-    }
-
-    public Booking(Customer customer, Room room, Staff staff, int days) {
-        this.customer = customer;
-        this.room = room;
-        this.staff = staff;
-        this.days = days;
-    }
-
-    public Booking(int id, Customer customer, Room room, Staff staff, int days) {
-        this.id = id;
-        this.customer = customer;
-        this.room = room;
-        this.staff = staff;
-        this.days = days;
     }
 
     public int getId() {
@@ -66,13 +69,21 @@ public class Booking {
         this.staff = staff;
     }
 
-    public int getDays() {
-        return days;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setDays(int days) {
-        this.days = days;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
-    
-    
+
+    public Boolean getPayed() {
+        return payed;
+    }
+
+    public void setPayed(Boolean payed) {
+        this.payed = payed;
+    }
+
+
 }

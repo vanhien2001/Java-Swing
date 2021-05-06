@@ -13,6 +13,7 @@ import DTO.Customer;
 import DTO.Service;
 import DTO.Use_service;
 import DTO.Staff;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.print.attribute.standard.PrinterMessageFromOperator;
 import javax.swing.JFrame;
@@ -176,8 +177,7 @@ public class Add_use_service extends javax.swing.JFrame {
 //            new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
             ArrayList<Service> list_service = new Service_BUS().SelectAll();
             ArrayList<Service> list_service1 = new ArrayList<Service>();
-            ArrayList<Integer> days = new ArrayList<>();
-            days.add(Integer.parseInt(txtDays.getText()));
+            ArrayList<Timestamp> days = new ArrayList<>();
             list_service1.add(list_service.get(listService.getSelectedIndex()));
             Use_service s = new Use_service(booking.getCustomer(),booking,list_service1,days);
             use_service_BUS_BUS.addUse_service(s);

@@ -5,6 +5,8 @@
  */
 package DTO;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author vanhi
@@ -15,6 +17,7 @@ public class Bill {
     Use_service use_service;
     Staff staff;
     int price;
+    Timestamp timestamp;
 
     public Bill() {
     }
@@ -72,6 +75,14 @@ public class Bill {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     
