@@ -125,7 +125,7 @@ public class EditStaff extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("  Quyền truy cập :");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(360, 240, 116, 30);
+        jLabel6.setBounds(360, 240, 120, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("  Số điện thoại :");
@@ -138,9 +138,9 @@ public class EditStaff extends javax.swing.JDialog {
         jLabel8.setBounds(30, 120, 73, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("  Chức vụ :");
+        jLabel5.setText("  Công việc :");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(30, 240, 71, 30);
+        jLabel5.setBounds(30, 240, 90, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("  Địa chỉ :");
@@ -250,17 +250,39 @@ public class EditStaff extends javax.swing.JDialog {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-        System.out.println(txtPassword.getText());
-        if(staff!=null){
-            staff_bus.editStaff(staff,txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
-            JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin nhân viên thành công");
-        }else{
-            Staff s = new Staff(txtUsername.getText(),txtPassword.getText(),txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
-            staff_bus.addStaff(s);
-            JOptionPane.showMessageDialog(rootPane, "Thêm thông tin nhân viên thành công");
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        String name = txtName.getText();
+        String sdt = txtSdt.getText();
+        String cmnd = txtCmnd.getText();
+        String address = txtAddress.getText();
+        String position = txtPosition.getText();
+        if((name.length()==0)||(sdt.length()==0)||(cmnd.length()==0)||(address.length()==0)||(username.length()==0)||(password.length()==0)||(position.length()==0)){
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin");
+        }else if(name.matches("^[0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Tên không hợp lệ");
+        }else if(!cmnd.matches("^[0-9]{9,12}+$")){
+            JOptionPane.showMessageDialog(this, "Cmnd không hợp lệ");
         }
-        sgui.showStaff();
-        this.setVisible(false);
+        else if(!sdt.matches("^[0-9]{10}+$")){
+            JOptionPane.showMessageDialog(this, "Sđt không hợp lệ");
+        }else if(!address.matches("^[a-zA-Z0-9/ ]+$")){
+            JOptionPane.showMessageDialog(this, "Địa chỉ không hợp lệ");
+        }else if(!position.matches("^[a-zA-Z0-9 ]+$")){
+            JOptionPane.showMessageDialog(this, "Công việc không hợp lệ");
+        }
+        else{
+            if(staff!=null){
+                staff_bus.editStaff(staff,txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
+                JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin nhân viên thành công");
+            }else{
+                Staff s = new Staff(txtUsername.getText(),txtPassword.getText(),txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
+                staff_bus.addStaff(s);
+                JOptionPane.showMessageDialog(rootPane, "Thêm thông tin nhân viên thành công");
+            }
+            sgui.showStaff();
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

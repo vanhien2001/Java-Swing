@@ -138,16 +138,29 @@ public class EditService extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-        if(service!=null){
-            service_BUS.editService(service,txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
-            JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin dịch vụ thành công");
-        }else{
-            Service s = new Service(txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
-            service_BUS.addService(s);
-            JOptionPane.showMessageDialog(rootPane, "Thêm thông tin dịch vụ thành công");
+        String name = txtName.getText();
+        String description = txtDescription.getText();
+        String price = txtPrice.getText();
+        if((name.length()==0)||(description.length()==0)||(price.length()==0)){
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin");
+        }else if(name.matches("^[0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Tên không hợp lệ");
         }
-        sgui.showService();
-        this.setVisible(false);
+        else if(!price.matches("^[0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Giá không hợp lệ");
+        }
+        else{
+            if(service!=null){
+                service_BUS.editService(service,txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
+                JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin dịch vụ thành công");
+            }else{
+                Service s = new Service(txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
+                service_BUS.addService(s);
+                JOptionPane.showMessageDialog(rootPane, "Thêm thông tin dịch vụ thành công");
+            }
+            sgui.showService();
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

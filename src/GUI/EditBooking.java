@@ -55,6 +55,7 @@ public class EditBooking extends javax.swing.JFrame {
             txtIdroom.setText(r.getName());
             txtIdroom.setEditable(false);
             txtDays.setVisible(false);
+            jTime.setVisible(false);
         }
         this.setVisible(true);
     }
@@ -80,7 +81,7 @@ public class EditBooking extends javax.swing.JFrame {
         txtCmnd = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jTime = new javax.swing.JLabel();
         txtDays = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,8 +113,8 @@ public class EditBooking extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Địa chỉ :");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Thời gian đặt phòng :");
+        jTime.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTime.setText("Thời gian đặt phòng :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,7 +128,7 @@ public class EditBooking extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtIdroom, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +173,7 @@ public class EditBooking extends javax.swing.JFrame {
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTime, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDays, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,6 +185,24 @@ public class EditBooking extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
+        String name = txtName.getText();
+        String sdt = txtSdt.getText();
+        String cmnd = txtCmnd.getText();
+        String address = txtAddress.getText();
+        if((name.length()==0)||(sdt.length()==0)||(cmnd.length()==0)||(address.length()==0)){
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin");
+        }else if(name.matches("^[0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Tên không hợp lệ");
+        }
+        else if(!sdt.matches("^[0-9]{10}+$")){
+            JOptionPane.showMessageDialog(this, "Sđt không hợp lệ");
+        }
+        else if(!cmnd.matches("^[0-9]{9|12}+$")){
+            JOptionPane.showMessageDialog(this, "Cmnd không hợp lệ");
+        }else if(!address.matches("^[a-zA-Z0-9/ ]+$")){
+            JOptionPane.showMessageDialog(this, "Địa chỉ không hợp lệ");
+        }
+        else{
         if(booking!=null){
             booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
@@ -197,6 +216,7 @@ public class EditBooking extends javax.swing.JFrame {
             rgui.showRoom();
         }
         this.setVisible(false);
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**
@@ -244,7 +264,7 @@ public class EditBooking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jTime;
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCmnd;

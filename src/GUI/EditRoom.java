@@ -153,16 +153,32 @@ public class EditRoom extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-        if(room!=null){
+        String name = txtName.getText();
+        String bed = txtBed.getText();
+        String price = txtPrice.getText();
+        if((name.length()==0)||(bed.length()==0)||(price.length()==0)){
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin");
+        }else if(!name.matches("^[a-zA-Z0-9 ]+$")){
+            JOptionPane.showMessageDialog(this, "Tên không hợp lệ");
+        }
+        else if(!bed.matches("^[0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Số giường không hợp lệ");
+        }
+        else if(!price.matches("^[0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Giá không hợp lệ");
+        }
+        else{
+            if(room!=null){
             room_bus.editRoom(room,txtName.getText(),Integer.parseInt(txtBed.getText()),Integer.parseInt(txtPrice.getText()), String.valueOf(txtVip.getSelectedItem())=="Vip",room.isBooked());
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin phòng thành công");
-        }else{
+            }else{
             Room s = new Room(txtName.getText(),Integer.parseInt(txtBed.getText()),Integer.parseInt(txtPrice.getText()), String.valueOf(txtVip.getSelectedItem())=="Vip",false);
             room_bus.addRoom(s);
             JOptionPane.showMessageDialog(rootPane, "Thêm thông tin phòng thành công");
+            }
+            rgui.showRoom();
+            this.setVisible(false);
         }
-        rgui.showRoom();
-        this.setVisible(false);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**
