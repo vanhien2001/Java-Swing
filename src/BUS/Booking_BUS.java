@@ -39,7 +39,7 @@ public class Booking_BUS {
                 c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(room.SelectbyId(rs.getInt("id_room")));
-                c.setTimestamp(rs.getTimestamp("Date"));
+                c.setTimestamp(rs.getTimestamp("Days"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
                 c.setPayed(rs.getBoolean("Payed"));
                 list_staff.add(c);
@@ -62,7 +62,7 @@ public class Booking_BUS {
             c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(room.SelectbyId(rs.getInt("id_room")));
-                c.setTimestamp(rs.getTimestamp("Date"));
+                c.setTimestamp(rs.getTimestamp("Days"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
                 c.setPayed(rs.getBoolean("Payed"));
         } catch (Exception e) {
