@@ -23,44 +23,34 @@ import javax.swing.JOptionPane;
  *
  * @author vanhi
  */
-public class Add_use_service extends javax.swing.JFrame {
+public class DeleteService extends javax.swing.JFrame {
     Use_serviceGUI ugui = new Use_serviceGUI();
     Use_service_BUS use_service_BUS_BUS = new Use_service_BUS();
-    Booking booking = null;
     RoomGUI rgui = null;
     Service service = new Service();
+    Use_service customer = new Use_service();
     /**
      * Creates new form EditRoom
      */
-    public Add_use_service() {
+    public DeleteService(Use_service s) {
         initComponents();
+        customer = s;
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setVisible(true);
     }
     
-    public void infor(Booking b,Use_serviceGUI BG){
+    public void infor(Use_serviceGUI BG){
         ugui = BG;
-        booking = b;
-//        if(b!=null){
-//            title.setText("Sửa thông tin phiếu đặt phòng");
-//            txtName_customer.setText(b.getRoom().getName());
-//            txtName_customer.setEditable(false);
-//            txtName.setText(b.getCustomer().getName());
-//            txtDays.setText(b.getCustomer().getSdt());
-//            txtName_room.setText(b.getCustomer().getCmnd());
-//            txtAddress.setText(b.getCustomer().getAddress());
-//            txtDays.setText(String.valueOf(b.getDays()));
-//            
-//        }else{
-            ArrayList<Service> list_service = new Service_BUS().SelectAll();
-            title.setText("Sử dụng dịch vụ");
-            txtName_customer.setText(booking.getCustomer().getName());
+            title.setText("Xoá dịch vụ");
+            txtName_customer.setText(customer.getCustomer().getName());
             txtName_customer.setEditable(false);
-            txtName_room.setText(booking.getRoom().getName());
+            txtName_room.setText(customer.getBooking().getRoom().getName());
             txtName_room.setEditable(false);
-            for (Service s : list_service) {
-                listService.addItem(s.getName()+"    "+s.getPrice()+".000đ");
-        }
+            for (int j = 0; j < customer.getList_service().size(); j++) {
+                listService.addItem(customer.getList_service().get(j).getName()+"    "+customer.getList_service().get(j).getPrice()+".000đ"+"    "+customer.getDate().get(j).toString());
+            }
+
 //        }
         this.setVisible(true);
     }
@@ -90,7 +80,7 @@ public class Add_use_service extends javax.swing.JFrame {
         title.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Họ tên khách hàng:");
+        jLabel2.setText("Họ tên khách hàng :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Phòng đặt :");
@@ -106,6 +96,12 @@ public class Add_use_service extends javax.swing.JFrame {
             }
         });
 
+        txtName_room.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtName_roomActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,38 +113,44 @@ public class Add_use_service extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtName_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listService, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addComponent(jLabel4)
-                .addGap(68, 68, 68)
-                .addComponent(txtName_room, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 62, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtName_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtName_room, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listService, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(367, 367, 367))
+                .addGap(318, 318, 318))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtName_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtName_room, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName_room, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listService, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
+                .addGap(53, 53, 53)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,19 +165,18 @@ public class Add_use_service extends javax.swing.JFrame {
 //        }else{
 //            room.setBooked(true);
 //            new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
-            ArrayList<Service> list_service = new Service_BUS().SelectAll();
-            ArrayList<Service> list_service1 = new ArrayList<Service>();
-            ArrayList<Timestamp> days = new ArrayList<>();
-            list_service1.add(list_service.get(listService.getSelectedIndex()));
-            Use_service s = new Use_service(booking.getCustomer(),booking,list_service1,days);
-            use_service_BUS_BUS.addUse_service(s);
-            JOptionPane.showMessageDialog(rootPane, "Đặt dịch vụ thành công");
-//            rgui.showRoom();
+            use_service_BUS_BUS.deleteUse_service(customer,customer.getList_service().get(listService.getSelectedIndex()).getId());
+            JOptionPane.showMessageDialog(rootPane, "Xoá dịch vụ thành công");
+            ugui.showUse_service();
 //        }
         this.setVisible(false);
 //        System.out.println("1");
 //        System.out.println("2");
     }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void txtName_roomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName_roomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtName_roomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,14 +195,22 @@ public class Add_use_service extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Add_use_service.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteService.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Add_use_service.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteService.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Add_use_service.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteService.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Add_use_service.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteService.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -212,11 +221,7 @@ public class Add_use_service extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Add_use_service().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

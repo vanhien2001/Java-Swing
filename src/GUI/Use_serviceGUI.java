@@ -31,7 +31,6 @@ public class Use_serviceGUI extends javax.swing.JPanel {
     public void showUse_service() {
         ArrayList<Use_service> list = use_service_BUS.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
-        System.out.println(list.size());
         int i=1;
         model.setColumnIdentifiers(new Object[]{
             "STT", "Họ tên khách hàng", "Phòng thuê","Dịch vụ khách sử dụng (Số ngày sử dụng)"
@@ -70,7 +69,6 @@ public class Use_serviceGUI extends javax.swing.JPanel {
         tb_staff1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnDelete1 = new javax.swing.JButton();
-        btnEdit1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         jButton3.setText("jButton3");
@@ -142,7 +140,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(30, 38, 50));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Thông tin đặt phòng");
+        jLabel1.setText("Thông tin phiếu dịch vụ");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(960, 700));
@@ -173,26 +171,12 @@ public class Use_serviceGUI extends javax.swing.JPanel {
             }
         });
 
-        btnEdit1.setBackground(new java.awt.Color(46, 204, 113));
-        btnEdit1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEdit1.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit1.setText("Edit");
-        btnEdit1.setBorder(null);
-        btnEdit1.setBorderPainted(false);
-        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEdit1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(btnEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(286, 286, 286)
                 .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(590, Short.MAX_VALUE))
         );
@@ -200,9 +184,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
 
@@ -262,27 +244,23 @@ public class Use_serviceGUI extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        ArrayList<Use_service> list = use_service_BUS.SelectAll();
-        index = tb_staff.getSelectedRow();
-        if(list.size()==0){
-            JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");
-        }else if(index == -1){
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để sửa");        
-        }else{
-            Use_service s = list.get(index);
+//        ArrayList<Use_service> list = use_service_BUS.SelectAll();
+//        index = tb_staff.getSelectedRow();
+//        if(list.size()==0){
+//            JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");
+//        }else if(index == -1){
+//            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để sửa");        
+//        }else{
+//            Use_service s = list.get(index);
 //            new EditBooking().infor(s,s.getRoom(),s.getStaff(),this, null);
-            
-        }
+//            
+//        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_btnDelete1ActionPerformed
-
-    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEdit1ActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
@@ -293,11 +271,8 @@ public class Use_serviceGUI extends javax.swing.JPanel {
         }else if(index == -1){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để xoá");
         }else{
-            int choose = JOptionPane.showConfirmDialog(this, "Xác nhận xoá");
-            if(choose==0){
-                use_service_BUS.deleteUse_service(list.get(index));
-                showUse_service();
-            }
+            new DeleteService(list.get(index)).infor(this);
+            showUse_service();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -306,7 +281,6 @@ public class Use_serviceGUI extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnEdit1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

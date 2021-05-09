@@ -39,7 +39,7 @@ public class Booking_BUS {
                 c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(room.SelectbyId(rs.getInt("id_room")));
-                c.setTimestamp(rs.getTimestamp("Days"));
+                c.setTimestamp(rs.getTimestamp("Date"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
                 c.setPayed(rs.getBoolean("Payed"));
                 list_staff.add(c);
@@ -62,7 +62,7 @@ public class Booking_BUS {
             c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setRoom(room.SelectbyId(rs.getInt("id_room")));
-                c.setTimestamp(rs.getTimestamp("Days"));
+                c.setTimestamp(rs.getTimestamp("Date"));
                 c.setStaff(staff.SelectbyId(rs.getInt("id_staff")));
                 c.setPayed(rs.getBoolean("Payed"));
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class Booking_BUS {
     }
     public ArrayList<Booking> SelectbyKeyword(String keyword){
         ArrayList<Booking> list_staff = new ArrayList<>();
-        String sql = "SELECT * FROM `booking` b INNER JOIN customer c on b.id_customer=c.id INNER JOIN room r on b.id_room=r.id INNER JOIN staff s ON b.id_staff=s.id WHERE c.Name LIKE ? OR c.Sdt LIKE ? OR c.Cmnd LIKE ? OR c.Address LIKE ? OR r.Name LIKE ? OR b.Days LIKE ? OR s.Name LIKE ?";
+        String sql = "SELECT * FROM `booking` b INNER JOIN customer c on b.id_customer=c.id INNER JOIN room r on b.id_room=r.id INNER JOIN staff s ON b.id_staff=s.id WHERE c.Name LIKE ? OR c.Sdt LIKE ? OR c.Cmnd LIKE ? OR c.Address LIKE ? OR r.Name LIKE ? OR s.Name LIKE ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + keyword + "%");
@@ -82,7 +82,6 @@ public class Booking_BUS {
             ps.setString(4, "%" + keyword + "%");
             ps.setString(5, "%" + keyword + "%");
             ps.setString(6, "%" + keyword + "%");
-            ps.setString(7, "%" + keyword + "%");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Booking c = new Booking();

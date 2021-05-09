@@ -189,12 +189,29 @@ public class Use_service_BUS {
         return false;
     }
     
-    public boolean deleteUse_service(Use_service s){
+    public boolean deleteUse_serviceALL(Use_service s){
         
         String sql = "DELETE FROM use_service where id_customer = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, s.getCustomer().getId());
+            
+            return ps.executeUpdate() > 0;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public boolean deleteUse_service(Use_service s,int id){
+        
+        String sql = "DELETE FROM use_service where id_customer = ? and id_service= ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, s.getCustomer().getId());
+            ps.setInt(2, id);
             
             return ps.executeUpdate() > 0;
             
