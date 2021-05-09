@@ -47,7 +47,7 @@ public class BillGUI extends javax.swing.JPanel {
                 services += use_service.getList_service().get(j).getName()+" ("+use_service.getDate().get(j).toString()+") , ";
             }
             model.addRow(new Object[]{
-                i++, s.getBooking().getCustomer().getName(), s.getBooking().getCustomer().getSdt(),s.getBooking().getCustomer().getCmnd(),s.getBooking().getRoom().getName(),s.getBooking().getTimestamp(),s.getTimestamp().toString(),services,s.getPrice(),s.getBooking().getStaff().getName(),s.getStaff().getName()
+                i++, s.getBooking().getCustomer().getName(), s.getBooking().getCustomer().getSdt(),s.getBooking().getCustomer().getCmnd(),s.getBooking().getRoom().getName(),s.getBooking().getTimestamp().toString(),s.getTimestamp().toString(),services,s.getPrice()+".000đ",s.getBooking().getStaff().getName(),s.getStaff().getName()
             });
         }
     }

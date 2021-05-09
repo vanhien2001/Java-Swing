@@ -37,6 +37,7 @@ public class EditStaff extends javax.swing.JDialog {
             txtPassword.setVisible(false);
             txtUsername.setText(s.getUsername());
             txtUsername.setEditable(false);
+            txtPassword.setText(s.getPassword());
             txtName.setText(s.getName());
             txtSdt.setText(s.getSdt());
             txtCmnd.setText(s.getCmnd());
@@ -266,10 +267,6 @@ public class EditStaff extends javax.swing.JDialog {
         }
         else if(!sdt.matches("^[0-9]{10}+$")){
             JOptionPane.showMessageDialog(this, "Sđt không hợp lệ");
-        }else if(!address.matches("^[a-zA-Z0-9/ ]+$")){
-            JOptionPane.showMessageDialog(this, "Địa chỉ không hợp lệ");
-        }else if(!position.matches("^[a-zA-Z0-9 ]+$")){
-            JOptionPane.showMessageDialog(this, "Công việc không hợp lệ");
         }
         else{
             if(staff!=null){

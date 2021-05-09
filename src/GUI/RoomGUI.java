@@ -40,7 +40,7 @@ public class RoomGUI extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Room s : list) {
             model.addRow(new Object[]{
-                i++, s.getName(), s.getBed(), s.getPrice(), s.isVip()?"Phòng vip":"Phòng thường", s.isBooked()?"Đã được đặt":"Còn trống"
+                i++, s.getName(), s.getBed(), s.getPrice()+".000đ", s.isVip()?"Phòng vip":"Phòng thường", s.isBooked()?"Đã được đặt":"Còn trống"
             });
         }
     }

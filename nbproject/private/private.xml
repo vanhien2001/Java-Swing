@@ -5,8 +5,19 @@
         <group>
             <file>file:/D:/SGU/Java/Project/Java/src/GUI/Login.java</file>
             <file>file:/D:/SGU/Java/Project/Java/src/BUS/Booking_BUS.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/Use_serviceGUI.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/BUS/Bill_BUS.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/BillGUI.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/MainGUI.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/ServiceGUI.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/DTO/Use_service.java</file>
             <file>file:/D:/SGU/Java/Project/Java/src/BUS/Use_service_BUS.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/ServiceGUI1.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/BookingGUI.java</file>
             <file>file:/D:/SGU/Java/Project/Java/src/GUI/EditBooking.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/EditService.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/Add_use_service.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/GUI/RoomGUI.java</file>
         </group>
     </open-files>
 </project-private>

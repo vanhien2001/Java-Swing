@@ -39,8 +39,6 @@ public class BookingGUI extends javax.swing.JPanel {
     
     public void showBooking() {
         ArrayList<Booking> list = booking_BUS.SelectAll();
-        System.out.println(list.get(1).getPayed()?"Đã thanh toán":" ");
-        System.out.println("ok");
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{

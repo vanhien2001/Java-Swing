@@ -896,7 +896,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void serviceInforLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviceInforLinkMouseClicked
         // TODO add your handling code here:
-        switchPanel(jPanel2, new ServiceGUI(staff));
+        switchPanel(jPanel2, new ServiceGUI1(staff));
         setColorNavChoose(serviceInfo);
     }//GEN-LAST:event_serviceInforLinkMouseClicked
 

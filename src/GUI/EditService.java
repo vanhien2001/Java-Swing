@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author vanhi
  */
 public class EditService extends javax.swing.JFrame {
-    ServiceGUI sgui = null;
+    ServiceGUI1 sgui = null;
     Service_BUS service_BUS = new Service_BUS();
     Service service = null;
     Staff staff = null;
@@ -31,7 +31,7 @@ public class EditService extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public void infor(Service s,ServiceGUI SG){
+    public void infor(Service s,ServiceGUI1 SG){
         sgui = SG;
         service = s;
         if(s!=null){

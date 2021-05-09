@@ -31,6 +31,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
     public void showUse_service() {
         ArrayList<Use_service> list = use_service_BUS.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
+        System.out.println(list.size());
         int i=1;
         model.setColumnIdentifiers(new Object[]{
             "STT", "Họ tên khách hàng", "Phòng thuê","Dịch vụ khách sử dụng (Số ngày sử dụng)"
