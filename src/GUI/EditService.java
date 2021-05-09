@@ -26,7 +26,7 @@ public class EditService extends javax.swing.JFrame {
     public EditService(Staff s) {
         initComponents();
         staff = s;
-        sgui = new ServiceGUI(s);
+        sgui = new ServiceGUI1(s);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

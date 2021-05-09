@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
  * @author vanhi
  */
 public class EditStaff extends javax.swing.JDialog {
-    StaffGUI sgui = new StaffGUI();
+    StaffGUI sgui;
     Staff_BUS staff_bus = new Staff_BUS();
     Staff staff = null;
+    AccountGUI1111 acgui;
     /**
      * Creates new form EditStaff
      */
@@ -28,7 +29,9 @@ public class EditStaff extends javax.swing.JDialog {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public void infor(Staff s,StaffGUI SG){
+    public void infor(Staff s,StaffGUI SG,AccountGUI1111 a){
+        System.out.println("staff :");
+        acgui = a;
         sgui = SG;
         staff = s;
         if(s!=null){
@@ -277,6 +280,7 @@ public class EditStaff extends javax.swing.JDialog {
                 staff_bus.addStaff(s);
                 JOptionPane.showMessageDialog(rootPane, "Thêm thông tin nhân viên thành công");
             }
+            acgui.showInfor();
             sgui.showStaff();
             this.setVisible(false);
         }

@@ -288,7 +288,7 @@ public class MainGUI extends javax.swing.JFrame {
         TotalBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TotalBtn.setForeground(new java.awt.Color(255, 255, 255));
         TotalBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TotalBtn.setText("Total");
+        TotalBtn.setText("Account");
         TotalBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TotalBtnMouseClicked(evt);
@@ -359,7 +359,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         Name.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
-        Name.setText("Phùng Duy Khang");
+        Name.setText("Khang cu siêu bé");
 
         Manager.setForeground(new java.awt.Color(145, 156, 175));
         Manager.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -374,7 +374,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Manager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,7 +642,12 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(145, 156, 175));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Total");
+        jLabel13.setText("Thông tin tài khoản");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -776,7 +781,7 @@ public class MainGUI extends javax.swing.JFrame {
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -878,7 +883,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void StaffLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StaffLinkMouseClicked
         // TODO add your handling code here:
-        switchPanel(jPanel2, new StaffGUI());
+        switchPanel(jPanel2, new StaffGUI(staff));
         setColorNavChoose(jPanel15);
     }//GEN-LAST:event_StaffLinkMouseClicked
 
@@ -904,6 +909,11 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         switchPanel(jPanel2, new BillGUI());
     }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        switchPanel(jPanel2, new AccountGUI1111(staff));
+    }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:

@@ -171,6 +171,21 @@ public class Staff_BUS {
         
         return false;
     }
+    public boolean ChangePass(Staff s,String pass){
+        
+        String sql = "UPDATE `staff` SET `Password`=?WHERE id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, pass);
+            ps.setInt(2, s.getId());
+            return ps.executeUpdate() > 0;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
     
     public boolean deleteStaff(Staff s){
         

@@ -455,7 +455,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Total"/>
+                    <Property name="text" type="java.lang.String" value="Account"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TotalBtnMouseClicked"/>
@@ -515,7 +515,7 @@
                           <Component id="Name" max="32767" attributes="0"/>
                           <Component id="Manager" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -540,7 +540,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ph&#xf9;ng Duy Khang"/>
+                <Property name="text" type="java.lang.String" value="Khang cu si&#xea;u b&#xe9;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Manager">
@@ -1084,8 +1084,11 @@
                           <Color blue="af" green="9c" red="91" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="Total"/>
+                        <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin t&#xe0;i kho&#x1ea3;n"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel13MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1137,7 +1140,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel2" alignment="0" pref="960" max="32767" attributes="0"/>
+              <Component id="jPanel2" alignment="0" pref="962" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

@@ -19,11 +19,13 @@ public class StaffGUI extends javax.swing.JPanel {
     Staff_BUS staff = new Staff_BUS();
     DefaultTableModel model;
     int index;
+    Staff s;
     /**
      * Creates new form StaffGUI
      */
-    public StaffGUI() {
+    public StaffGUI(Staff s) {
         initComponents();
+        this.s=s;
         showStaff();
     }
     
@@ -225,8 +227,8 @@ public class StaffGUI extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,9 +286,9 @@ public class StaffGUI extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 10, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 10, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +335,7 @@ public class StaffGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để sửa");        
         }else{
             Staff s = list.get(index);
-            new EditStaff(new Login(), true).infor(s,this);
+            new EditStaff(new Login(), true).infor(s,this,null);
             
         }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -341,7 +343,7 @@ public class StaffGUI extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         Staff s = null;
-        new EditStaff(new Login(), true).infor(s,this);
+        new EditStaff(new Login(), true).infor(s,this,new AccountGUI1111(s));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed

@@ -33,7 +33,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
-            "STT", "Họ tên khách hàng", "Phòng thuê","Dịch vụ khách sử dụng (Số ngày sử dụng)"
+            "STT", "Họ tên khách hàng", "Phòng thuê","Dịch vụ khách sử dụng (Thời điểm sử dụng)"
         });
         model.setRowCount(0);
         for (Use_service s : list) {
