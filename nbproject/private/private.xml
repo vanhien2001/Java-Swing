@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/ServiceGUI1.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/BookingGUI.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/StaffGUI.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/AccountGUI1111.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/EditStaff.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/ChangePassword.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/MainGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/EditStaff.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/AccountGUI1111.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/MainGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/Add_use_service.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/BillGUI.java</file>
         </group>
     </open-files>
 </project-private>
