@@ -71,22 +71,17 @@ public class MainGUI extends javax.swing.JFrame {
         StaffNav = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         StaffLink = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        Stafflink2 = new javax.swing.JLabel();
         ServiceNav = new javax.swing.JPanel();
         serviceInfo = new javax.swing.JPanel();
         serviceInforLink = new javax.swing.JLabel();
         serviceUsing = new javax.swing.JPanel();
         serviceUsingLink = new javax.swing.JLabel();
         HotelNav = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jPanel20 = new javax.swing.JPanel();
+        BillInfo = new javax.swing.JPanel();
+        BillInfoLink = new javax.swing.JLabel();
         totalNav = new javax.swing.JPanel();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jPanel22 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
+        accountInfo = new javax.swing.JPanel();
+        accountInfoLink = new javax.swing.JLabel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -174,7 +169,6 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 700));
 
         jPanel1.setBackground(new java.awt.Color(55, 106, 237));
 
@@ -349,7 +343,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addContainerGap(699, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(30, 38, 50));
@@ -478,38 +472,16 @@ public class MainGUI extends javax.swing.JFrame {
             .addComponent(StaffLink, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        jPanel16.setBackground(new java.awt.Color(30, 38, 50));
-
-        Stafflink2.setBackground(new java.awt.Color(145, 156, 175));
-        Stafflink2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Stafflink2.setForeground(new java.awt.Color(145, 156, 175));
-        Stafflink2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Stafflink2.setText("?");
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Stafflink2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Stafflink2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout StaffNavLayout = new javax.swing.GroupLayout(StaffNav);
         StaffNav.setLayout(StaffNavLayout);
         StaffNavLayout.setHorizontalGroup(
             StaffNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         StaffNavLayout.setVerticalGroup(
             StaffNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(StaffNavLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -581,118 +553,80 @@ public class MainGUI extends javax.swing.JFrame {
 
         HotelNav.setBackground(new java.awt.Color(30, 38, 50));
 
-        jPanel19.setBackground(new java.awt.Color(30, 38, 50));
+        BillInfo.setBackground(new java.awt.Color(30, 38, 50));
 
-        jLabel12.setBackground(new java.awt.Color(145, 156, 175));
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(145, 156, 175));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Thông tin các hoá đơn");
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+        BillInfoLink.setBackground(new java.awt.Color(145, 156, 175));
+        BillInfoLink.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BillInfoLink.setForeground(new java.awt.Color(145, 156, 175));
+        BillInfoLink.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BillInfoLink.setText("Thông tin các hoá đơn");
+        BillInfoLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
+                BillInfoLinkMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+        javax.swing.GroupLayout BillInfoLayout = new javax.swing.GroupLayout(BillInfo);
+        BillInfo.setLayout(BillInfoLayout);
+        BillInfoLayout.setHorizontalGroup(
+            BillInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BillInfoLink, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
         );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-        );
-
-        jPanel20.setBackground(new java.awt.Color(30, 38, 50));
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+        BillInfoLayout.setVerticalGroup(
+            BillInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BillInfoLink, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout HotelNavLayout = new javax.swing.GroupLayout(HotelNav);
         HotelNav.setLayout(HotelNavLayout);
         HotelNavLayout.setHorizontalGroup(
             HotelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BillInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         HotelNavLayout.setVerticalGroup(
             HotelNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HotelNavLayout.createSequentialGroup()
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(573, Short.MAX_VALUE))
+                .addComponent(BillInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(609, Short.MAX_VALUE))
         );
 
         totalNav.setBackground(new java.awt.Color(30, 38, 50));
 
-        jPanel21.setBackground(new java.awt.Color(30, 38, 50));
+        accountInfo.setBackground(new java.awt.Color(30, 38, 50));
 
-        jLabel13.setBackground(new java.awt.Color(145, 156, 175));
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(145, 156, 175));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Thông tin tài khoản");
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        accountInfoLink.setBackground(new java.awt.Color(145, 156, 175));
+        accountInfoLink.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        accountInfoLink.setForeground(new java.awt.Color(145, 156, 175));
+        accountInfoLink.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        accountInfoLink.setText("Thông tin tài khoản");
+        accountInfoLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                accountInfoLinkMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout accountInfoLayout = new javax.swing.GroupLayout(accountInfo);
+        accountInfo.setLayout(accountInfoLayout);
+        accountInfoLayout.setHorizontalGroup(
+            accountInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(accountInfoLink, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
         );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-        );
-
-        jPanel22.setBackground(new java.awt.Color(30, 38, 50));
-
-        jLabel17.setBackground(new java.awt.Color(145, 156, 175));
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(145, 156, 175));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Total");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        accountInfoLayout.setVerticalGroup(
+            accountInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(accountInfoLink, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout totalNavLayout = new javax.swing.GroupLayout(totalNav);
         totalNav.setLayout(totalNavLayout);
         totalNavLayout.setHorizontalGroup(
             totalNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(accountInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         totalNavLayout.setVerticalGroup(
             totalNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalNavLayout.createSequentialGroup()
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(573, Short.MAX_VALUE))
+                .addComponent(accountInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(984, Short.MAX_VALUE))
         );
 
         jLayeredPane1.setLayer(roomNav, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -781,7 +715,7 @@ public class MainGUI extends javax.swing.JFrame {
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1700, Short.MAX_VALUE)
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -833,6 +767,8 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel15.setBackground(new java.awt.Color(30, 38, 50));
         serviceInfo.setBackground(new java.awt.Color(30, 38, 50));
         serviceUsing.setBackground(new java.awt.Color(30, 38, 50));
+        BillInfo.setBackground(new java.awt.Color(30, 38, 50));
+        accountInfo.setBackground(new java.awt.Color(30, 38, 50));
         semiNavBtn.setBackground(new java.awt.Color(255, 255, 255));
     }
 
@@ -905,15 +841,17 @@ public class MainGUI extends javax.swing.JFrame {
         setColorNavChoose(serviceInfo);
     }//GEN-LAST:event_serviceInforLinkMouseClicked
 
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+    private void BillInfoLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BillInfoLinkMouseClicked
         // TODO add your handling code here:
         switchPanel(jPanel2, new BillGUI());
-    }//GEN-LAST:event_jLabel12MouseClicked
+        setColorNavChoose(BillInfo);
+    }//GEN-LAST:event_BillInfoLinkMouseClicked
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void accountInfoLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountInfoLinkMouseClicked
         // TODO add your handling code here:
         switchPanel(jPanel2, new AccountGUI1111(staff));
-    }//GEN-LAST:event_jLabel13MouseClicked
+        setColorNavChoose(accountInfo);
+    }//GEN-LAST:event_accountInfoLinkMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
@@ -961,6 +899,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminBtn;
+    private javax.swing.JPanel BillInfo;
+    private javax.swing.JLabel BillInfoLink;
     private javax.swing.JLabel HotelBtn;
     private javax.swing.JPanel HotelNav;
     private javax.swing.JLabel Manager;
@@ -972,13 +912,11 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel StaffBtn;
     private javax.swing.JLabel StaffLink;
     private javax.swing.JPanel StaffNav;
-    private javax.swing.JLabel Stafflink2;
     private javax.swing.JLabel TotalBtn;
+    private javax.swing.JPanel accountInfo;
+    private javax.swing.JLabel accountInfoLink;
     private javax.swing.JPanel adminBtn;
     private javax.swing.JPanel hotelBtn;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -991,12 +929,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;

@@ -78,7 +78,7 @@ public class Use_service_BUS {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            rs.next();              
+            while (rs.next()){
                 c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
@@ -105,6 +105,7 @@ public class Use_service_BUS {
                 }
                 c.setDate(days);
                 c.setList_service(list_service);
+            }            
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -204,14 +205,30 @@ public class Use_service_BUS {
         
         return false;
     }
-    
-    public boolean deleteUse_service(Use_service s,int id){
+    public boolean deleteByid_customer(int id){
         
-        String sql = "DELETE FROM use_service where id_customer = ? and id_service= ?";
+        String sql = "DELETE FROM use_service where id_customer = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            return ps.executeUpdate() > 0;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public boolean deleteUse_service(Use_service s,int id, Timestamp time){
+        
+        String sql = "DELETE FROM use_service where id_customer = ? and id_service= ? and Date = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, s.getCustomer().getId());
             ps.setInt(2, id);
+            ps.setTimestamp(3, time);
             
             return ps.executeUpdate() > 0;
             

@@ -137,7 +137,7 @@ public class Booking_BUS {
     }
     
     public boolean deleteBooking(Booking s){
-        new Customer_BUS().deleteCustomer(s.getCustomer());
+        new Use_service_BUS().deleteByid_customer(s.getCustomer().getId());
         String sql = "DELETE FROM booking where id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
