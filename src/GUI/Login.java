@@ -73,6 +73,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         showPasswordInput.setText("Hiển thị mật khẩu");
+        showPasswordInput.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPasswordInputMouseClicked(evt);
+            }
+        });
         showPasswordInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showPasswordInputActionPerformed(evt);
@@ -142,6 +147,17 @@ public class Login extends javax.swing.JFrame {
     private void showPasswordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_showPasswordInputActionPerformed
+
+    private void showPasswordInputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordInputMouseClicked
+        // TODO add your handling code here:
+
+        if (showPasswordInput.isSelected()) {
+            txtPassword.setEchoChar((char) 0); //password = JPasswordField
+        } else {
+            txtPassword.setEchoChar('*');
+        }
+
+    }//GEN-LAST:event_showPasswordInputMouseClicked
 
     /**
      * @param args the command line arguments
