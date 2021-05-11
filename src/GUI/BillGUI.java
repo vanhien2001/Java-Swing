@@ -90,7 +90,7 @@ public class BillGUI extends javax.swing.JPanel {
         jPanel1.add(jButton1);
         jButton1.setBounds(760, 90, 170, 50);
 
-        tb_staff.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tb_staff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_staff.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -5,9 +5,22 @@
         <group>
             <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/EditStaff.java</file>
             <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/AccountGUI1111.java</file>
-            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/MainGUI.java</file>
-            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/Add_use_service.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/Login.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/RoomGUI.java</file>
             <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/BillGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/EditBooking.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/Main.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/StaffGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/Use_serviceGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/MainGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/EditRoom.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/Add_use_service.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/BookingGUI.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/EditService.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/DeleteService.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/ServiceGUI1.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/HandleStaff.java</file>
+            <file>file:/D:/programming/java-application/projectJava/Java-Swing/src/GUI/ChangePassword.java</file>
         </group>
     </open-files>
 </project-private>
