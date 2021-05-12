@@ -149,6 +149,8 @@ public class Booking_BUS {
             e.printStackTrace();
         }
         
+        new Customer_BUS().deleteCustomer(s.getCustomer());
+        
         return false;
     }
 

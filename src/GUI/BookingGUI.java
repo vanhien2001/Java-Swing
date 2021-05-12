@@ -246,7 +246,7 @@ public class BookingGUI extends javax.swing.JPanel {
                     new Room_BUS().editRoom(r, r.getName(), r.getBed(), r.getPrice(), r.isVip(), false);
                     showBooking();
                 }              
-            } 
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -313,7 +313,7 @@ public class BookingGUI extends javax.swing.JPanel {
                     Room r = b.getRoom();
                     new Room_BUS().editRoom(r, r.getName(), r.getBed(), r.getPrice(), r.isVip(), false);
                     showBooking();
-                    JOptionPane.showMessageDialog(this, "Trả phòng thành công");
+                    JOptionPane.showMessageDialog(null, "Trả phòng thành công");
             }
 
             }

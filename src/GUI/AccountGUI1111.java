@@ -21,9 +21,6 @@ public class AccountGUI1111 extends javax.swing.JPanel {
     public AccountGUI1111(Staff s) {
         initComponents();
         staff = s;
-//        System.out.println("GUI.AccountGUI.<init>()");
-//        System.out.println("s :"+s.getId());
-//        System.out.println("staff :"+staff.getId());
         showInfor();
     }
     public void showInfor(){

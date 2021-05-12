@@ -59,7 +59,6 @@ public class EditBooking extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -195,6 +194,11 @@ public class EditBooking extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
             bgui.showBooking();
         }else{
+        if(booking!=null){
+            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
+            JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
+            bgui.showBooking();
+        }else{
             room.setBooked(true);
             Booking s = new Booking(new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),room,staff,false);
             new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
@@ -205,7 +209,7 @@ public class EditBooking extends javax.swing.JFrame {
         this.setVisible(false);
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
-
+    }
     private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSdtActionPerformed

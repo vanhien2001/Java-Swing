@@ -78,7 +78,7 @@ public class Use_service_BUS {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while(rs.next()){
                 c.setId(rs.getInt("id"));
                 c.setCustomer(customer.SelectbyId(rs.getInt("id_customer")));
                 c.setBooking(booking_BUS.SelectbyId(rs.getInt("id_booking")));
@@ -105,7 +105,7 @@ public class Use_service_BUS {
                 }
                 c.setDate(days);
                 c.setList_service(list_service);
-            }            
+            }           
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -205,7 +205,8 @@ public class Use_service_BUS {
         
         return false;
     }
-    public boolean deleteByid_customer(int id){
+    
+        public boolean deleteByid_customer(int id){
         
         String sql = "DELETE FROM use_service where id_customer = ?";
         try {
