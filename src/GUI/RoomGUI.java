@@ -28,6 +28,11 @@ public class RoomGUI extends javax.swing.JPanel {
     public RoomGUI(Staff s) {
         initComponents();
         staff = s;
+        if(!staff.isManager()){
+            btnAdd.setVisible(false);
+            btnEdit.setVisible(false);
+            btnDelete.setVisible(false);
+        }
         showRoom();
     }
     public void showRoom() {

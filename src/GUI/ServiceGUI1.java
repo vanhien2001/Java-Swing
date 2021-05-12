@@ -28,6 +28,11 @@ public class ServiceGUI1 extends javax.swing.JPanel {
     public ServiceGUI1(Staff s) {
         initComponents();
         staff = s;
+        if(!staff.isManager()){
+            btnAdd.setVisible(false);
+            btnEdit.setVisible(false);
+            btnDelete.setVisible(false);
+        }
         showService();
     }
     public void showService() {

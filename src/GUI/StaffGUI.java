@@ -26,6 +26,11 @@ public class StaffGUI extends javax.swing.JPanel {
     public StaffGUI(Staff s) {
         initComponents();
         this.s=s;
+        if(!s.isManager()){
+            btnAdd.setVisible(false);
+            btnEdit.setVisible(false);
+            btnDelete.setVisible(false);
+        }
         showStaff();
     }
     
