@@ -185,8 +185,6 @@ public class EditBooking extends javax.swing.JFrame {
         }
         else if(!cmnd.matches("^[0-9]{9,12}+$")){
             JOptionPane.showMessageDialog(this, "Cmnd không hợp lệ");
-        }else if(!address.matches("^[a-zA-Z0-9/ ]+$")){
-            JOptionPane.showMessageDialog(this, "Địa chỉ không hợp lệ");
         }
         else{
         if(booking!=null){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 12, 2021 lúc 05:56 AM
+-- Thời gian đã tạo: Th5 16, 2021 lúc 04:10 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 7.3.28
 
@@ -41,7 +41,7 @@ CREATE TABLE `bill` (
 
 INSERT INTO `bill` (`id`, `id_booking`, `Price`, `id_staff`, `Date`) VALUES
 (3, 15, 350, 12, '2021-05-09 08:47:50'),
-(4, 18, 10229, 12, '2021-05-11 14:37:54');
+(9, 31, 505, 19, '2021-05-16 14:05:28');
 
 -- --------------------------------------------------------
 
@@ -65,8 +65,9 @@ CREATE TABLE `booking` (
 INSERT INTO `booking` (`id`, `id_customer`, `id_room`, `Date`, `id_staff`, `Payed`) VALUES
 (15, 20, 12, '2021-05-09 08:46:34', 12, 1),
 (17, 22, 14, '2021-05-09 09:43:27', 12, 1),
-(18, 23, 32, '2021-05-11 14:36:19', 12, 1),
-(20, 25, 33, '2021-05-11 14:55:50', 12, 1);
+(20, 25, 33, '2021-05-11 14:55:50', 12, 1),
+(30, 35, 24, '2021-05-16 14:04:01', 18, 0),
+(31, 36, 21, '2021-05-16 14:04:40', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,10 @@ INSERT INTO `customer` (`id`, `Name`, `Sdt`, `Cmnd`, `Address`) VALUES
 (30, 'aaaa', '1234567891', '1234567891', '1234567891'),
 (31, 'a', '1234657981', '1234657981', '1234657981'),
 (32, 'a', '1234657981', '1234657981', '1234657981'),
-(33, 'H', '1324567981', '1324567981', '1324567981');
+(33, 'H', '1324567981', '1324567981', '1324567981'),
+(34, 'Phương éo có cu', '1234567981', '1234567981', '1234567981'),
+(35, 'Nguyễn Văn A', '0901010101', '1234567891', 'Tp.HCM'),
+(36, 'Nguyễn Văn B', '0902020202', '1324567981', 'Việt Nam');
 
 -- --------------------------------------------------------
 
@@ -134,7 +138,7 @@ INSERT INTO `room` (`id`, `Name`, `Bed`, `Price`, `Vip`, `Booked`) VALUES
 (21, '204', 4, 250, 0, 0),
 (22, '205', 1, 200, 1, 0),
 (23, '206', 3, 250, 1, 0),
-(24, '301', 1, 150, 0, 0),
+(24, '301', 1, 150, 0, 1),
 (25, '302', 2, 200, 0, 0),
 (26, '303', 1, 200, 1, 0),
 (27, '304', 2, 180, 0, 0),
@@ -189,7 +193,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `Username`, `Password`, `Name`, `Sdt`, `Cmnd`, `Address`, `Position`, `Manager`) VALUES
-(12, 'admin', '123', 'Admin', '0969696969', '696969696969', 'aaaaaaaaaaa', 'Giám đốc', 1),
+(12, 'admin', '123', 'Admin', '0969696969', '696969696969', 'Tp.HCM', 'Giám đốc', 1),
 (18, 'vanhien', 'vanhien2001', 'Nguyễn Văn Hiền', '0936642182', '12345678910', 'Quảng Nam', 'Ngồi chơi', 1),
 (19, 'khangvippro', '123', 'Phùng Duy Khang', '0793607376', '12345678910', 'Đắk Lắk', 'Rửa chén', 1),
 (20, 'phuongvippro', '123', 'Nguyễn Thái Phương', '0962711960', '12345678910', 'Vũng Tàu', 'Tiếp khách', 1),
@@ -218,9 +222,13 @@ INSERT INTO `use_service` (`id`, `id_customer`, `id_service`, `Date`) VALUES
 (17, 21, 8, '2021-05-09 09:38:43'),
 (19, 22, 7, '2021-05-09 09:48:28'),
 (22, 22, 7, '2021-05-11 14:10:19'),
-(26, 23, 7, '2021-05-11 14:36:31'),
 (29, 24, 7, '2021-05-11 14:50:55'),
-(31, 27, 7, '2021-05-11 15:04:07');
+(31, 27, 7, '2021-05-11 15:04:07'),
+(39, 35, 9, '2021-05-16 14:04:10'),
+(40, 35, 8, '2021-05-16 14:04:13'),
+(41, 35, 11, '2021-05-16 14:04:18'),
+(42, 36, 7, '2021-05-16 14:04:47'),
+(43, 36, 11, '2021-05-16 14:04:51');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -283,19 +291,19 @@ ALTER TABLE `use_service`
 -- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `room`
@@ -319,7 +327,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT cho bảng `use_service`
 --
 ALTER TABLE `use_service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

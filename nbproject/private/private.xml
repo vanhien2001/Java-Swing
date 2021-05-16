@@ -6,7 +6,8 @@
             <file>file:/D:/SGU/Java/Project/Java/src/GUI/Login.java</file>
             <file>file:/D:/SGU/Java/Project/Java/src/GUI/BookingGUI.java</file>
             <file>file:/D:/SGU/Java/Project/Java/src/GUI/BillGUI.java</file>
-            <file>file:/D:/SGU/Java/Project/Java/src/GUI/MainGUI.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/BUS/Customer_BUS.java</file>
+            <file>file:/D:/SGU/Java/Project/Java/src/DAL/Database.java</file>
         </group>
     </open-files>
 </project-private>
