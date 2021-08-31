@@ -59,7 +59,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        Password_icon.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_password_20px.png")); // NOI18N
+        Password_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_password_20px.png"))); // NOI18N
 
         txtUsername.setText("Username");
         txtUsername.setBorder(null);
@@ -79,7 +79,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        User_icon.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_user_20px_1.png")); // NOI18N
+        User_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_user_20px_1.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(55, 106, 237));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,20 +119,20 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 
         Hotel_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Hotel_icon.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_hotel_127px.png")); // NOI18N
+        Hotel_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_hotel_127px.png"))); // NOI18N
 
-        Star1.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_star_20px.png")); // NOI18N
+        Star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_star_20px.png"))); // NOI18N
 
-        Star2.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_star_20px.png")); // NOI18N
+        Star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_star_20px.png"))); // NOI18N
 
-        Star3.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_star_20px.png")); // NOI18N
+        Star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_star_20px.png"))); // NOI18N
 
-        Star4.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_star_20px.png")); // NOI18N
+        Star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_star_20px.png"))); // NOI18N
 
-        Star5.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_star_20px.png")); // NOI18N
+        Star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_star_20px.png"))); // NOI18N
 
         Location.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Location.setIcon(new javax.swing.ImageIcon("D:\\SGU\\Java\\Project\\Java\\src\\Icon\\icons8_location_30px.png")); // NOI18N
+        Location.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8_location_30px.png"))); // NOI18N
         Location.setText(" 273 An D. Vương, Phường 3, Quận 5, Tp.HCM");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

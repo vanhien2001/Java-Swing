@@ -67,37 +67,37 @@ public class AccountGUI1111 extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Thông tin tài khoản");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(470, 250, 640, 110);
+        jLabel1.setBounds(210, 70, 640, 110);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Username :");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(470, 380, 100, 30);
+        jLabel2.setBounds(200, 210, 100, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Name :");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(800, 380, 100, 30);
+        jLabel3.setBounds(560, 210, 70, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Địa chỉ :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(470, 520, 100, 30);
+        jLabel4.setBounds(200, 310, 100, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Sđt :");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(470, 450, 100, 30);
+        jLabel5.setBounds(200, 260, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Công việc :");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(470, 590, 100, 30);
+        jLabel6.setBounds(200, 360, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cmnd :");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(800, 450, 100, 31);
+        jLabel7.setBounds(560, 260, 80, 31);
 
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtUsername);
-        txtUsername.setBounds(570, 380, 210, 30);
+        txtUsername.setBounds(310, 210, 210, 30);
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +113,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtName);
-        txtName.setBounds(900, 380, 210, 30);
+        txtName.setBounds(640, 210, 210, 30);
 
         txtSdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +121,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtSdt);
-        txtSdt.setBounds(570, 450, 210, 30);
+        txtSdt.setBounds(310, 260, 210, 30);
 
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtAddress);
-        txtAddress.setBounds(570, 520, 540, 30);
+        txtAddress.setBounds(310, 310, 540, 30);
 
         txtPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +137,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtPosition);
-        txtPosition.setBounds(570, 590, 540, 30);
+        txtPosition.setBounds(310, 360, 540, 30);
 
         txtCmnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,7 +145,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(txtCmnd);
-        txtCmnd.setBounds(900, 450, 210, 30);
+        txtCmnd.setBounds(640, 260, 210, 30);
 
         btnEdit.setBackground(new java.awt.Color(52, 152, 219));
         btnEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -158,7 +158,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnEdit);
-        btnEdit.setBounds(470, 680, 300, 40);
+        btnEdit.setBounds(200, 440, 300, 40);
 
         btnChange.setBackground(new java.awt.Color(46, 204, 113));
         btnChange.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -171,7 +171,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnChange);
-        btnChange.setBounds(810, 680, 300, 40);
+        btnChange.setBounds(550, 440, 300, 40);
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
@@ -208,7 +208,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
         // TODO add your handling code here:
         ChangePassword c = new ChangePassword(staff);
-        staff.setPassword(c.getPass());
+//        staff.setPassword(c.getPass());
     }//GEN-LAST:event_btnChangeActionPerformed
 
 

@@ -48,8 +48,7 @@ public class EditBooking extends javax.swing.JFrame {
             txtCmnd.setText(b.getCustomer().getCmnd());
             txtAddress.setText(b.getCustomer().getAddress());
             txtDays.setText(b.getTimestamp().toString());
-            txtDays.setEditable(false);
-            
+            txtDays.setEditable(false);           
         }else{
             title.setText("Đặt phòng");
             txtIdroom.setText(r.getName());
@@ -140,7 +139,7 @@ public class EditBooking extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnConfirm);
-        btnConfirm.setBounds(490, 320, 210, 40);
+        btnConfirm.setBounds(490, 300, 210, 40);
         jPanel1.add(txtCmnd);
         txtCmnd.setBounds(490, 100, 210, 31);
 

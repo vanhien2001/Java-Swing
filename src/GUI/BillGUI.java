@@ -4,6 +4,17 @@
  * and open the template in the editor.
  */
 package GUI;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import BUS.Use_service_BUS;
 import BUS.Bill_BUS;
@@ -11,6 +22,7 @@ import DTO.Bill;
 import DTO.Service;
 import DTO.Staff;
 import DTO.Use_service;
+import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,9 +48,9 @@ public class BillGUI extends javax.swing.JPanel {
         ArrayList<Bill> list = bill_BUS.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
-        model.setColumnIdentifiers(new Object[]{
-            "STT", "Họ tên khách hàng","Sđt","Cmnd", "Phòng thuê","Ngày thuê","Ngày trả phòng","Dịch vụ khách sử dụng (Ngày sử dụng)","Tổng tiền","Nhân viên đặt phòng","Nhân viên thanh toán"
-        });
+//        model.setColumnIdentifiers(new Object[]{
+//            "STT", "Họ tên khách hàng","Sđt","Cmnd", "Phòng thuê","Ngày thuê","Ngày trả phòng","Dịch vụ khách sử dụng (Ngày sử dụng)","Tổng tiền","Nhân viên đặt phòng","Nhân viên thanh toán"
+//        });
         model.setRowCount(0);
         for (Bill s : list) {
             Use_service use_service = new Use_service_BUS().SelectbyIdCustomer(s.getBooking().getCustomer().getId());
@@ -63,7 +75,10 @@ public class BillGUI extends javax.swing.JPanel {
 
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        Bill_output_btn = new javax.swing.JButton();
+        Bill_output_btn1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtext = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_staff = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -77,18 +92,48 @@ public class BillGUI extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(52, 152, 219));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Xuất hoá đơn");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        Bill_output_btn.setBackground(new java.awt.Color(52, 152, 219));
+        Bill_output_btn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Bill_output_btn.setForeground(new java.awt.Color(255, 255, 255));
+        Bill_output_btn.setText("Xuất hoá đơn");
+        Bill_output_btn.setBorderPainted(false);
+        Bill_output_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Bill_output_btnMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(760, 90, 170, 50);
+        Bill_output_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bill_output_btnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Bill_output_btn);
+        Bill_output_btn.setBounds(820, 90, 170, 50);
+
+        Bill_output_btn1.setBackground(new java.awt.Color(52, 152, 219));
+        Bill_output_btn1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Bill_output_btn1.setForeground(new java.awt.Color(255, 255, 255));
+        Bill_output_btn1.setText("In hoá đơn");
+        Bill_output_btn1.setBorderPainted(false);
+        Bill_output_btn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Bill_output_btn1MouseClicked(evt);
+            }
+        });
+        Bill_output_btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Bill_output_btn1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Bill_output_btn1);
+        Bill_output_btn1.setBounds(590, 90, 170, 50);
+
+        jtext.setColumns(20);
+        jtext.setRows(5);
+        jScrollPane2.setViewportView(jtext);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(290, 30, 166, 0);
 
         tb_staff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tb_staff.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,9 +141,24 @@ public class BillGUI extends javax.swing.JPanel {
 
             },
             new String [] {
-
+                "STT", "Họ tên khách hàng", "Sđt", "Cmnd", "Phòng thuê", "Ngày thuê", "Ngày trả phòng", "Dịch vụ khách sử dụng (Ngày sử dụng)", "Tổng tiền", "Nhân viên đặt phòng", "Nhân viên thanh toán"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, true, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tb_staff.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(tb_staff);
 
@@ -130,18 +190,83 @@ public class BillGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Bill_output_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_output_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try{
+            Workbook wb = new XSSFWorkbook();
+            Sheet sheet = wb.createSheet("Bill");
+            Row rowCol = sheet.createRow(0);
+            for (int i = 0; i < tb_staff.getColumnCount(); i++) {
+                Cell cell = rowCol.createCell(i);
+                cell.setCellValue(tb_staff.getColumnName(i));
+            }
+            for (int j = 0; j < tb_staff.getRowCount(); j++) {
+                Row row = sheet.createRow(j+1);
+                for (int k = 0; k < tb_staff.getColumnCount(); k++) {
+                    Cell cell = row.createCell(k);
+                    if(tb_staff.getValueAt(j, k)!= null){
+                        cell.setCellValue(tb_staff.getValueAt(j, k).toString());
+                    }
+                }
+            }
+            FileOutputStream out = new FileOutputStream(new File("Bill.xls"));
+            wb.write(out);
+            wb.close();
+            out.close();
+            JOptionPane.showMessageDialog(this, "Xuất file thành công");
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_Bill_output_btnActionPerformed
+
+    private void Bill_output_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bill_output_btnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Bill_output_btnMouseClicked
+
+    private void Bill_output_btn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bill_output_btn1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Bill_output_btn1MouseClicked
+
+    private void Bill_output_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bill_output_btn1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int index = tb_staff.getSelectedRow();
+            if(index == -1){
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn hoá đơn muốn in !");        
+            }else{
+                String a = "HOÁ ĐƠN THUÊ PHÒNG\n\nHọ tên khách hàng: "+tb_staff.getValueAt(index, 1)
+                            +"\nSố điện thoại: "+tb_staff.getValueAt(index, 2)
+                            +"\nChứng minh nhân dân: "+tb_staff.getValueAt(index, 3)
+                            +"\nPhòng thuê: "+tb_staff.getValueAt(index, 4)
+                            +"\nNgày thuê: "+tb_staff.getValueAt(index, 5)
+                            +"\nNgày trả phòng: "+tb_staff.getValueAt(index, 6)
+                            +"\nDịch vụ khách sử dụng (Ngày sử dụng): "+tb_staff.getValueAt(index, 7)
+                            +"\nTổng tiền: "+tb_staff.getValueAt(index, 8)
+                            +"\nNhân viên đặt phòng: "+tb_staff.getValueAt(index, 9)
+                            +"\nNhân viên thanh toán: "+tb_staff.getValueAt(index, 10)
+                            +"\n\nCảm ơn quý khách đã thuê phòng ở khách sạn chúng tôi";
+                jtext.setText(a);
+                boolean print = jtext.print();
+                if(print){
+                    JOptionPane.showMessageDialog(this, "In thành công");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_Bill_output_btn1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Bill_output_btn;
+    private javax.swing.JButton Bill_output_btn1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jtext;
     private javax.swing.JTable tb_staff;
     // End of variables declaration//GEN-END:variables
 }

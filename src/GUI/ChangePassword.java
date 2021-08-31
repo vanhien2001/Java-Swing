@@ -27,9 +27,9 @@ public class ChangePassword extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public String getPass(){
-        return staff.getPassword();
-    }
+//    public String getPass(){
+//        return staff.getPassword();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,10 +104,9 @@ public class ChangePassword extends javax.swing.JFrame {
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
         // TODO add your handling code here:
-        System.out.println(txtOld.getText()==staff.getPassword());
-        if(txtOld.getText()==staff.getPassword()){
-            if(txtNew.getText()!=""){
-                if(txtNew.getText()==txtNewConfirm.getText()){
+        if(txtOld.getText().equalsIgnoreCase(staff.getPassword())){
+            if(!txtNew.getText().equalsIgnoreCase("")){
+                if(txtNew.getText().equalsIgnoreCase(txtNewConfirm.getText())){
                     new Staff_BUS().ChangePass(staff,txtNew.getText());
                     JOptionPane.showMessageDialog(rootPane, "Thay đổi password thành công");
                     staff.setPassword(txtNew.getText());
