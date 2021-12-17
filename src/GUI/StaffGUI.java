@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BUS.Staff_BUS;
 import DTO.Staff;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -16,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
  * @author duykh
  */
 public class StaffGUI extends javax.swing.JPanel {
-    Staff_BUS staff = new Staff_BUS();
     DefaultTableModel model;
     int index;
     Staff s;
@@ -35,7 +33,7 @@ public class StaffGUI extends javax.swing.JPanel {
     }
     
     public void showStaff() {
-        ArrayList<Staff> list = staff.SelectAll();
+        ArrayList<Staff> list = Staff.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
@@ -214,7 +212,7 @@ public class StaffGUI extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        ArrayList<Staff> list = staff.SelectAll();
+        ArrayList<Staff> list = Staff.SelectAll();
         index = tb_staff.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để xoá");
@@ -223,7 +221,7 @@ public class StaffGUI extends javax.swing.JPanel {
         }else{
             int choose = JOptionPane.showConfirmDialog(this, "Xác nhận xoá");
             if(choose==0){
-                staff.deleteStaff(list.get(index));
+                Staff.deleteStaff(list.get(index));
                 showStaff();
             }
         }
@@ -231,7 +229,7 @@ public class StaffGUI extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        ArrayList<Staff> list = staff.SelectAll();
+        ArrayList<Staff> list = Staff.SelectAll();
         index = tb_staff.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");
@@ -252,7 +250,7 @@ public class StaffGUI extends javax.swing.JPanel {
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         String keyword = txtSearch.getText();
-        ArrayList<Staff> list = staff.SelectbyKeyword(keyword);;
+        ArrayList<Staff> list = Staff.SelectbyKeyword(keyword);;
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{

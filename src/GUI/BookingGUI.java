@@ -5,10 +5,6 @@
  */
 package GUI;
 
-import BUS.Bill_BUS;
-import BUS.Booking_BUS;
-import BUS.Room_BUS;
-import BUS.Use_service_BUS;
 import DTO.Bill;
 import DTO.Booking;
 import DTO.Room;
@@ -24,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
  * @author duykh
  */
 public class BookingGUI extends javax.swing.JPanel {
-    Booking_BUS booking_BUS = new Booking_BUS();
     DefaultTableModel model;
     Staff staff = null;
     int index;
@@ -38,7 +33,7 @@ public class BookingGUI extends javax.swing.JPanel {
     }
     
     public void showBooking() {
-        ArrayList<Booking> list = booking_BUS.SelectAll();
+        ArrayList<Booking> list = Booking.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
@@ -228,7 +223,7 @@ public class BookingGUI extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        ArrayList<Booking> list = booking_BUS.SelectAll();
+        ArrayList<Booking> list = Booking.SelectAll();
         index = tb_staff.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để xoá");
@@ -241,9 +236,9 @@ public class BookingGUI extends javax.swing.JPanel {
             }else{
                 int choose = JOptionPane.showConfirmDialog(this, "Xác nhận xoá");
                 if(choose==0){
-                    booking_BUS.deleteBooking(s);
+                    Booking.deleteBooking(s);
                     Room r = s.getRoom();
-                    new Room_BUS().editRoom(r, r.getName(), r.getBed(), r.getPrice(), r.isVip(), false);
+                    Room.editRoom(r, r.getName(), r.getBed(), r.getPrice(), r.isVip(), false);
                     showBooking();
                 }              
             }
@@ -252,7 +247,7 @@ public class BookingGUI extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        ArrayList<Booking> list = booking_BUS.SelectAll();
+        ArrayList<Booking> list = Booking.SelectAll();
         index = tb_staff.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");
@@ -270,7 +265,7 @@ public class BookingGUI extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        ArrayList<Booking> list = booking_BUS.SelectAll();
+        ArrayList<Booking> list = Booking.SelectAll();
         index = tb_staff.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin khách hàng");
@@ -281,7 +276,7 @@ public class BookingGUI extends javax.swing.JPanel {
             if(s.getPayed()){
                     JOptionPane.showMessageDialog(this, "Lỗi! Khách đã trả phòng");
             }else{
-                new Add_use_service().infor(s, new Use_serviceGUI());              
+                new Add_use_service(s);              
             }
         }
         
@@ -289,7 +284,7 @@ public class BookingGUI extends javax.swing.JPanel {
 
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
         // TODO add your handling code here:
-        ArrayList<Booking> list = booking_BUS.SelectAll();
+        ArrayList<Booking> list = Booking.SelectAll();
         index = tb_staff.getSelectedRow();
         Booking b = list.get(index);
         if(list.size()==0){
@@ -303,15 +298,17 @@ public class BookingGUI extends javax.swing.JPanel {
                     int choose = JOptionPane.showConfirmDialog(this, "Xác nhận thanh toán");
                     if(choose==0){
                     int date = new Timestamp(System.currentTimeMillis()).getDate();
-                    Use_service us = new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId());
+                    Use_service us = Use_service.SelectbyIdCustomer(b.getCustomer().getId());
                     int price = b.getRoom().getPrice()*(date - b.getTimestamp().getDate()+1);
+                    if(us != null){
                         for (int j = 0; j < us.getList_service().size(); j++) {
                             price += us.getList_service().get(j).getPrice();
                         }
-                    new Bill_BUS().addBill(new Bill( b ,new Use_service_BUS().SelectbyIdCustomer(b.getCustomer().getId()),staff,price));
-                    booking_BUS.editBooking(b, b.getCustomer(),true);
+                    }
+                    Bill.addBill(new Bill( b ,Use_service.SelectbyIdCustomer(b.getCustomer().getId()),staff,price));
+                    Booking.editBooking(b, b.getCustomer(),true);
                     Room r = b.getRoom();
-                    new Room_BUS().editRoom(r, r.getName(), r.getBed(), r.getPrice(), r.isVip(), false);
+                    Room.editRoom(r, r.getName(), r.getBed(), r.getPrice(), r.isVip(), false);
                     showBooking();
                     JOptionPane.showMessageDialog(null, "Trả phòng thành công");
             }
@@ -323,7 +320,7 @@ public class BookingGUI extends javax.swing.JPanel {
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         String keyword = txtSearch.getText();
-        ArrayList<Booking> list = booking_BUS.SelectbyKeyword(keyword);;
+        ArrayList<Booking> list = Booking.SelectbyKeyword(keyword);;
         int i =1;
         model.setColumnIdentifiers(new Object[]{
             "STT", "Họ tên", "Sđt", "Cmnd", "Địa chỉ", "Phòng","Thời điểm đặt phòng","Nhân viên đặt phòng",""

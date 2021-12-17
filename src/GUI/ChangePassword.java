@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BUS.Staff_BUS;
 import DTO.Staff;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -107,7 +106,7 @@ public class ChangePassword extends javax.swing.JFrame {
         if(txtOld.getText().equalsIgnoreCase(staff.getPassword())){
             if(!txtNew.getText().equalsIgnoreCase("")){
                 if(txtNew.getText().equalsIgnoreCase(txtNewConfirm.getText())){
-                    new Staff_BUS().ChangePass(staff,txtNew.getText());
+                    Staff.ChangePass(staff,txtNew.getText());
                     JOptionPane.showMessageDialog(rootPane, "Thay đổi password thành công");
                     staff.setPassword(txtNew.getText());
                     this.setVisible(false);

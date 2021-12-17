@@ -5,8 +5,6 @@
  */
 package GUI;
 
-import BUS.Room_BUS;
-import BUS.Staff_BUS;
 import DTO.Room;
 import DTO.Staff;
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
  * @author duykh
  */
 public class RoomGUI extends javax.swing.JPanel {
-    Room_BUS room = new Room_BUS();
     DefaultTableModel model;
     Staff staff = null;
     int index;
@@ -36,7 +33,7 @@ public class RoomGUI extends javax.swing.JPanel {
         showRoom();
     }
     public void showRoom() {
-        ArrayList<Room> list = room.SelectAll();
+        ArrayList<Room> list = Room.SelectAll();
         model = (DefaultTableModel) tb_room.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
@@ -202,7 +199,7 @@ public class RoomGUI extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        ArrayList<Room> list = room.SelectAll();
+        ArrayList<Room> list = Room.SelectAll();
         index = tb_room.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để xoá");
@@ -211,7 +208,7 @@ public class RoomGUI extends javax.swing.JPanel {
         }else{
             int choose = JOptionPane.showConfirmDialog(this, "Xác nhận xoá");
             if(choose==0){
-                room.deleteRoom(list.get(index));
+                Room.deleteRoom(list.get(index));
                 showRoom();
             }
             
@@ -220,7 +217,7 @@ public class RoomGUI extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        ArrayList<Room> list = room.SelectAll();
+        ArrayList<Room> list = Room.SelectAll();
         index = tb_room.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");
@@ -235,7 +232,7 @@ public class RoomGUI extends javax.swing.JPanel {
 
     private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
         // TODO add your handling code here:
-        ArrayList<Room> list = room.SelectAll();
+        ArrayList<Room> list = Room.SelectAll();
         index = tb_room.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin phòng");

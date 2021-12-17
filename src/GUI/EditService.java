@@ -5,7 +5,6 @@
  */
 package GUI;
 import DTO.Service;
-import BUS.Service_BUS;
 import DTO.Staff;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class EditService extends javax.swing.JFrame {
     ServiceGUI1 sgui = null;
-    Service_BUS service_BUS = new Service_BUS();
     Service service = null;
     Staff staff = null;
     
@@ -131,11 +129,11 @@ public class EditService extends javax.swing.JFrame {
         }
         else{
             if(service!=null){
-                service_BUS.editService(service,txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
+                Service.editService(service,txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
                 JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin dịch vụ thành công");
             }else{
                 Service s = new Service(txtName.getText(),txtDescription.getText(), Integer.parseInt(txtPrice.getText()));
-                service_BUS.addService(s);
+                Service.addService(s);
                 JOptionPane.showMessageDialog(rootPane, "Thêm thông tin dịch vụ thành công");
             }
             sgui.showService();

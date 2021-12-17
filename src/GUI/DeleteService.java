@@ -5,10 +5,6 @@
  */
 package GUI;
 import DTO.Booking;
-import BUS.Booking_BUS;
-import BUS.Room_BUS;
-import BUS.Service_BUS;
-import BUS.Use_service_BUS;
 import DTO.Customer;
 import DTO.Service;
 import DTO.Use_service;
@@ -25,9 +21,6 @@ import javax.swing.JOptionPane;
  */
 public class DeleteService extends javax.swing.JFrame {
     Use_serviceGUI ugui = new Use_serviceGUI();
-    Use_service_BUS use_service_BUS_BUS = new Use_service_BUS();
-    RoomGUI rgui = null;
-    Service service = new Service();
     Use_service customer = new Use_service();
     /**
      * Creates new form EditRoom
@@ -140,20 +133,11 @@ public class DeleteService extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-//        if(booking!=null){
-//            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtDays.getText(),txtName_room.getText(),txtAddress.getText()),Integer.parseInt(txtDays.getText()));
-//            JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
-//            bgui.showBooking();
-//        }else{
-//            room.setBooked(true);
-//            new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
-            use_service_BUS_BUS.deleteUse_service(customer,customer.getList_service().get(listService.getSelectedIndex()).getId(),customer.getDate().get(listService.getSelectedIndex()));
+            Use_service.deleteUse_service(customer,customer.getList_service().get(listService.getSelectedIndex()).getId(),customer.getDate().get(listService.getSelectedIndex()));
             JOptionPane.showMessageDialog(rootPane, "Xoá dịch vụ thành công");
             ugui.showUse_service();
 //        }
         this.setVisible(false);
-//        System.out.println("1");
-//        System.out.println("2");
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void txtName_roomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName_roomActionPerformed

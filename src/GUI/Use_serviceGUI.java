@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BUS.Use_service_BUS;
 import DTO.Service;
 import DTO.Use_service;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
  * @author duykh
  */
 public class Use_serviceGUI extends javax.swing.JPanel {
-    Use_service_BUS use_service_BUS = new Use_service_BUS();
     DefaultTableModel model;
     int index;
     /**
@@ -29,7 +27,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
     }
     
     public void showUse_service() {
-        ArrayList<Use_service> list = use_service_BUS.SelectAll();
+        ArrayList<Use_service> list = Use_service.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
@@ -141,7 +139,7 @@ public class Use_serviceGUI extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        ArrayList<Use_service> list = use_service_BUS.SelectAll();
+        ArrayList<Use_service> list = Use_service.SelectAll();
         index = tb_staff.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để xoá");

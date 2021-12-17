@@ -5,8 +5,6 @@
  */
 package GUI;
 
-import BUS.Service_BUS;
-import BUS.Staff_BUS;
 import DTO.Service;
 import DTO.Staff;
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
  * @author duykh
  */
 public class ServiceGUI1 extends javax.swing.JPanel {
-    Service_BUS service_BUS = new Service_BUS();
     DefaultTableModel model;
     Staff staff = null;
     int index;
@@ -36,7 +33,7 @@ public class ServiceGUI1 extends javax.swing.JPanel {
         showService();
     }
     public void showService() {
-        ArrayList<Service> list = service_BUS.SelectAll();
+        ArrayList<Service> list = Service.SelectAll();
         model = (DefaultTableModel) tb_room.getModel();
         int i=1;
         model.setColumnIdentifiers(new Object[]{
@@ -160,10 +157,11 @@ public class ServiceGUI1 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,7 +174,7 @@ public class ServiceGUI1 extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        ArrayList<Service> list = service_BUS.SelectAll();
+        ArrayList<Service> list = Service.SelectAll();
         index = tb_room.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");
@@ -185,7 +183,7 @@ public class ServiceGUI1 extends javax.swing.JPanel {
         }else{
             int choose = JOptionPane.showConfirmDialog(this, "Xác nhận xoá");
             if(choose==0){
-                service_BUS.deleteService(list.get(index));
+                Service.deleteService(list.get(index));
                 showService();
             }
         }
@@ -193,7 +191,7 @@ public class ServiceGUI1 extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        ArrayList<Service> list = service_BUS.SelectAll();
+        ArrayList<Service> list = Service.SelectAll();
         index = tb_room.getSelectedRow();
         if(list.size()==0){
             JOptionPane.showMessageDialog(this, "Không có thông tin để sửa");

@@ -6,7 +6,6 @@
 package GUI;
 
 import DTO.Staff;
-import BUS.Staff_BUS;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -16,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class EditStaff extends javax.swing.JDialog {
     StaffGUI sgui;
-    Staff_BUS staff_bus = new Staff_BUS();
     Staff staff = null;
     AccountGUI1111 acgui;
     /**
@@ -273,11 +271,11 @@ public class EditStaff extends javax.swing.JDialog {
         }
         else{
             if(staff!=null){
-                staff_bus.editStaff(staff,txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
+                Staff.editStaff(staff,txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
                 JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin nhân viên thành công");
             }else{
                 Staff s = new Staff(txtUsername.getText(),txtPassword.getText(),txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText(),txtPosition.getText(), String.valueOf(txtManager.getSelectedItem())=="Quản lý");
-                staff_bus.addStaff(s);
+                Staff.addStaff(s);
                 JOptionPane.showMessageDialog(rootPane, "Thêm thông tin nhân viên thành công");
             }
             if(acgui!=null){

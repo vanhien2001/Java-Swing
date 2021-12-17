@@ -15,9 +15,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import BUS.Use_service_BUS;
-import BUS.Bill_BUS;
 import DTO.Bill;
 import DTO.Service;
 import DTO.Staff;
@@ -32,7 +29,6 @@ import javax.swing.table.DefaultTableModel;
  * @author duykh
  */
 public class BillGUI extends javax.swing.JPanel {
-    Bill_BUS bill_BUS = new Bill_BUS();
     DefaultTableModel model;
     Staff staff = null;
     int index;
@@ -45,18 +41,20 @@ public class BillGUI extends javax.swing.JPanel {
     }
     
     public void showBill() {
-        ArrayList<Bill> list = bill_BUS.SelectAll();
+        ArrayList<Bill> list = Bill.SelectAll();
         model = (DefaultTableModel) tb_staff.getModel();
         int i=1;
-//        model.setColumnIdentifiers(new Object[]{
-//            "STT", "Họ tên khách hàng","Sđt","Cmnd", "Phòng thuê","Ngày thuê","Ngày trả phòng","Dịch vụ khách sử dụng (Ngày sử dụng)","Tổng tiền","Nhân viên đặt phòng","Nhân viên thanh toán"
-//        });
+        model.setColumnIdentifiers(new Object[]{
+            "STT", "Họ tên khách hàng","Sđt","Cmnd", "Phòng thuê","Ngày thuê","Ngày trả phòng","Dịch vụ khách sử dụng (Ngày sử dụng)","Tổng tiền","Nhân viên đặt phòng","Nhân viên thanh toán"
+        });
         model.setRowCount(0);
         for (Bill s : list) {
-            Use_service use_service = new Use_service_BUS().SelectbyIdCustomer(s.getBooking().getCustomer().getId());
+            Use_service use_service = Use_service.SelectbyIdCustomer(s.getBooking().getCustomer().getId());
             String services = "";
-            for (int j = 0; j < use_service.getList_service().size(); j++) {
-                services += use_service.getList_service().get(j).getName()+" ("+use_service.getDate().get(j).toString()+") , ";
+            if(use_service != null){
+                for (int j = 0; j < use_service.getList_service().size(); j++) {
+                    services += use_service.getList_service().get(j).getName()+" ("+use_service.getDate().get(j).toString()+") , ";
+                }
             }
             model.addRow(new Object[]{
                 i++, s.getBooking().getCustomer().getName(), s.getBooking().getCustomer().getSdt(),s.getBooking().getCustomer().getCmnd(),s.getBooking().getRoom().getName(),s.getBooking().getTimestamp().toString(),s.getTimestamp().toString(),services,s.getPrice()+".000đ",s.getBooking().getStaff().getName(),s.getStaff().getName()
@@ -108,7 +106,7 @@ public class BillGUI extends javax.swing.JPanel {
             }
         });
         jPanel1.add(Bill_output_btn);
-        Bill_output_btn.setBounds(820, 90, 170, 50);
+        Bill_output_btn.setBounds(680, 90, 170, 50);
 
         Bill_output_btn1.setBackground(new java.awt.Color(52, 152, 219));
         Bill_output_btn1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -126,7 +124,7 @@ public class BillGUI extends javax.swing.JPanel {
             }
         });
         jPanel1.add(Bill_output_btn1);
-        Bill_output_btn1.setBounds(590, 90, 170, 50);
+        Bill_output_btn1.setBounds(460, 90, 170, 50);
 
         jtext.setColumns(20);
         jtext.setRows(5);
@@ -177,7 +175,7 @@ public class BillGUI extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

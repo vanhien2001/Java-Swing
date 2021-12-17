@@ -5,8 +5,6 @@
  */
 package GUI;
 import DTO.Booking;
-import BUS.Booking_BUS;
-import BUS.Room_BUS;
 import DTO.Customer;
 import DTO.Room;
 import DTO.Staff;
@@ -19,7 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class EditBooking extends javax.swing.JFrame {
     BookingGUI bgui = null;
-    Booking_BUS booking_BUS = new Booking_BUS();
     Booking booking = null;
     Room room = null;
     Staff staff = null;
@@ -187,19 +184,19 @@ public class EditBooking extends javax.swing.JFrame {
         }
         else{
         if(booking!=null){
-            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
+            Booking.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
             bgui.showBooking();
         }else{
         if(booking!=null){
-            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
+            Booking.editBooking(booking,new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),booking.getPayed());
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
             bgui.showBooking();
         }else{
             room.setBooked(true);
             Booking s = new Booking(new Customer(txtName.getText(),txtSdt.getText(),txtCmnd.getText(),txtAddress.getText()),room,staff,false);
-            new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
-            booking_BUS.addBooking(s);
+            Room.editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
+            Booking.addBooking(s);
             JOptionPane.showMessageDialog(rootPane, "Đặt phòng thành công");
             rgui.showRoom();
         }

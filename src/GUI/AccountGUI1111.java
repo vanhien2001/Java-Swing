@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package GUI;
-
-import BUS.Staff_BUS;
 import DTO.Staff;
 
 /**
@@ -14,7 +12,6 @@ import DTO.Staff;
  */
 public class AccountGUI1111 extends javax.swing.JPanel {
     Staff staff = new Staff();
-    Staff_BUS staff_bus = new Staff_BUS();
     /**
      * Creates new form AccountGUI
      */
@@ -24,7 +21,7 @@ public class AccountGUI1111 extends javax.swing.JPanel {
         showInfor();
     }
     public void showInfor(){
-        staff = staff_bus.SelectbyId(staff.getId());
+        staff = Staff.SelectbyId(staff.getId());
         txtUsername.setText(staff.getUsername());
         txtName.setText(staff.getName());
         txtCmnd.setText(staff.getCmnd());

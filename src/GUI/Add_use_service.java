@@ -5,10 +5,6 @@
  */
 package GUI;
 import DTO.Booking;
-import BUS.Booking_BUS;
-import BUS.Room_BUS;
-import BUS.Service_BUS;
-import BUS.Use_service_BUS;
 import DTO.Customer;
 import DTO.Service;
 import DTO.Use_service;
@@ -24,42 +20,29 @@ import javax.swing.JOptionPane;
  * @author vanhi
  */
 public class Add_use_service extends javax.swing.JFrame {
-    Use_serviceGUI ugui = new Use_serviceGUI();
-    Use_service_BUS use_service_BUS_BUS = new Use_service_BUS();
     Booking booking = null;
     RoomGUI rgui = null;
     Service service = new Service();
     /**
      * Creates new form EditRoom
      */
-    public Add_use_service() {
+    public Add_use_service(Booking b) {
+        booking = b;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        infor();
     }
     
-    public void infor(Booking b,Use_serviceGUI BG){
-        ugui = BG;
-        booking = b;
-//        if(b!=null){
-//            title.setText("Sửa thông tin phiếu đặt phòng");
-//            txtName_customer.setText(b.getRoom().getName());
-//            txtName_customer.setEditable(false);
-//            txtName.setText(b.getCustomer().getName());
-//            txtDays.setText(b.getCustomer().getSdt());
-//            txtName_room.setText(b.getCustomer().getCmnd());
-//            txtAddress.setText(b.getCustomer().getAddress());
-//            txtDays.setText(String.valueOf(b.getDays()));
-//            
-//        }else{
-            ArrayList<Service> list_service = new Service_BUS().SelectAll();
-            title.setText("Sử dụng dịch vụ");
-            txtName_customer.setText(booking.getCustomer().getName());
-            txtName_customer.setEditable(false);
-            txtName_room.setText(booking.getRoom().getName());
-            txtName_room.setEditable(false);
-            for (Service s : list_service) {
-                listService.addItem(s.getName()+"    "+s.getPrice()+".000đ");
+    public void infor(){
+        ArrayList<Service> list_service = Service.SelectAll();
+        title.setText("Sử dụng dịch vụ");
+        txtName_customer.setText(booking.getCustomer().getName());
+        txtName_customer.setEditable(false);
+        txtName_room.setText(booking.getRoom().getName());
+        txtName_room.setEditable(false);
+        for (Service s : list_service) {
+            listService.addItem(s.getName()+"    "+s.getPrice()+".000đ");
         }
 //        }
         this.setVisible(true);
@@ -163,25 +146,13 @@ public class Add_use_service extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-//        if(booking!=null){
-//            booking_BUS.editBooking(booking,new Customer(txtName.getText(),txtDays.getText(),txtName_room.getText(),txtAddress.getText()),Integer.parseInt(txtDays.getText()));
-//            JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin piếu đặt phòng thành công");
-//            bgui.showBooking();
-//        }else{
-//            room.setBooked(true);
-//            new Room_BUS().editRoom(room,room.getName(),room.getBed(),room.getPrice(),room.isVip(),room.isBooked());
-            ArrayList<Service> list_service = new Service_BUS().SelectAll();
+            ArrayList<Service> list_service = Service.SelectAll();
             ArrayList<Service> list_service1 = new ArrayList<Service>();
-            ArrayList<Timestamp> days = new ArrayList<>();
             list_service1.add(list_service.get(listService.getSelectedIndex()));
-            Use_service s = new Use_service(booking.getCustomer(),booking,list_service1,days);
-            use_service_BUS_BUS.addUse_service(s);
+            Use_service s = new Use_service(booking.getCustomer(),booking,list_service1,null);
+            Use_service.addUse_service(s);
             JOptionPane.showMessageDialog(rootPane, "Đặt dịch vụ thành công");
-//            rgui.showRoom();
-//        }
-        this.setVisible(false);
-//        System.out.println("1");
-//        System.out.println("2");
+            this.setVisible(false);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void txtName_roomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName_roomActionPerformed
@@ -233,7 +204,7 @@ public class Add_use_service extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Add_use_service().setVisible(true);
+                new Add_use_service(new Booking()).setVisible(true);
             }
         });
     }

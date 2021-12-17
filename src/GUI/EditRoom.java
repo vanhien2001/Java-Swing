@@ -5,7 +5,6 @@
  */
 package GUI;
 import DTO.Room;
-import BUS.Room_BUS;
 import DTO.Staff;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class EditRoom extends javax.swing.JFrame {
     RoomGUI rgui = null;
-    Room_BUS room_bus = new Room_BUS();
     Room room = null;
     Staff staff = null;
     
@@ -145,11 +143,11 @@ public class EditRoom extends javax.swing.JFrame {
         }
         else{
             if(room!=null){
-            room_bus.editRoom(room,txtName.getText(),Integer.parseInt(txtBed.getText()),Integer.parseInt(txtPrice.getText()), String.valueOf(txtVip.getSelectedItem())=="Vip",room.isBooked());
+            Room.editRoom(room,txtName.getText(),Integer.parseInt(txtBed.getText()),Integer.parseInt(txtPrice.getText()), String.valueOf(txtVip.getSelectedItem())=="Vip",room.isBooked());
             JOptionPane.showMessageDialog(rootPane, "Chỉnh sửa thông tin phòng thành công");
             }else{
             Room s = new Room(txtName.getText(),Integer.parseInt(txtBed.getText()),Integer.parseInt(txtPrice.getText()), String.valueOf(txtVip.getSelectedItem())=="Vip",false);
-            room_bus.addRoom(s);
+            Room.addRoom(s);
             JOptionPane.showMessageDialog(rootPane, "Thêm thông tin phòng thành công");
             }
             rgui.showRoom();
